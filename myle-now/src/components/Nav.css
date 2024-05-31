@@ -1,0 +1,85 @@
+nav {
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;}
+
+nav .search-boxes input{
+    padding: 5px 10px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.search-boxes{
+    display: flex;
+}
+
+.location{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+
+
+
+/* styles.css */
+@keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  
+  @keyframes blinkCaret {
+    from, to { border-color: transparent; }
+    50% { border-color: black; }
+  }
+  
+  .animated-placeholder-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .input-with-animated-placeholder {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  .static-text{
+    padding-left: 10px;
+    color: #999;
+    font-size: 14px;
+    
+  }
+
+  .static-text img{
+    width: 12px;
+    padding-top: 10px;
+    padding-right:10px ;
+  }
+
+  .placeholder-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    white-space: nowrap;
+    overflow: hidden;
+    width: calc(100% - 10px); /* Adjust based on input padding */
+  }
+  
+  .placeholder-text {
+    font-size: 14px;
+    display: inline-block;
+    animation: typewriter 2.5s steps(30) 1s 1 normal both, blinkCaret .75s step-end infinite;
+    color: #999;
+    padding-bottom: 8px;
+    
+  }
+  
