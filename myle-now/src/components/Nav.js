@@ -1,3 +1,4 @@
+import LinkButton from './LinkButton';
 import './Nav.css'
 import React, { useState, useEffect } from 'react';
 const AnimatedInput = ({ placeholders = [""], ...passedProps }) => {
@@ -73,17 +74,17 @@ function Nav() {
     return (
       
       <nav>
-        <div className='logo'><h1>Logo Goes Here</h1></div>
+        <div className='logo'><h1>MYLE  NOW</h1></div>
         <div className='search-boxes'>
             <input type='text' className='location'></input>
-           
+           <img className='location-icon' src='./location.png'></img>
 
             <AnimatedInput placeholders={placeholders} />
            
             
         </div>
      
-        <button>Login</button>
+        <LinkButton buttontext='Login'/>
        
       </nav>
       

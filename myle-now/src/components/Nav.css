@@ -1,14 +1,16 @@
 nav {
-    padding: 5px 10px;
+    padding: 0px 55px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;}
 
 nav .search-boxes input{
-    padding: 5px 10px;
+    padding: 10px 10px;
     margin: 10px;
+    width: 300px;
     border-radius: 5px;
+    
 }
 
 .search-boxes{
@@ -21,10 +23,21 @@ nav .search-boxes input{
     font-size: 16px;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    position: relative;
   }
 
+  .location-icon{
+    position: absolute;
+    width: 15px;
+    top: 38px;
+    left: 548px;
+  }
 
-
+.logo h1{
+  font-weight: 400;
+  letter-spacing: 10px;
+  margin-left: 15px;
+}
 
 /* styles.css */
 @keyframes typewriter {
