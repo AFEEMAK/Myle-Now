@@ -1,7 +1,5 @@
 import './Nav.css'
 import React, { useState, useEffect } from 'react';
-
-
 const AnimatedInput = ({ placeholders = [""], ...passedProps }) => {
     const [currentPlaceholder, setCurrentPlaceholder] = useState('');
     const [placeholderIndex, setPlaceholderIndex] = useState(0);
@@ -22,7 +20,7 @@ const AnimatedInput = ({ placeholders = [""], ...passedProps }) => {
                     setCurrentPlaceholder('');
                     charIndex = 0;
                     setPlaceholderIndex((prevIndex) => (prevIndex + 1) % placeholders.length);
-                }, 2000); // Wait time before starting the next placeholder
+                }, 2000); 
             }
         };
 
@@ -59,7 +57,7 @@ const AnimatedInput = ({ placeholders = [""], ...passedProps }) => {
             />
             {!isFocused && !isTyping && (
                 <div className="placeholder-wrapper">
-                    <span className="static-text"><img src='./search.png'></img>Search for </span>
+                    <span className="static-text"><img src='./search.png' alt='search box icon'></img>Search for </span>
                     <span className="placeholder-text">{currentPlaceholder}</span>
                 </div>
             )}
@@ -70,8 +68,8 @@ const placeholders = [" 'House Cleaning'", " 'Men's Haircut'", " 'Pedicure'"];
 
 
 function Nav() {
-
-   
+    
+ 
     return (
       
       <nav>
@@ -84,10 +82,9 @@ function Nav() {
            
             
         </div>
-        <div className='account-buttons'>
+     
         <button>Login</button>
-        <button>Sign up</button>
-        </div>
+       
       </nav>
       
     );
