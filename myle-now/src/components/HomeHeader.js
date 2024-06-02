@@ -18,6 +18,9 @@ function HomeHeader() {
             </div>
 
                     
+            <div className='suggestionsContainer'>
+
+         
 
             <Suggestion 
                 children={[
@@ -31,7 +34,7 @@ function HomeHeader() {
                     layoutstyle='suggestionGrid' 
     />
 
-         
+</div>
 
      
       

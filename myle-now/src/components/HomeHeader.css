@@ -2,7 +2,6 @@
     display:flex;
     justify-content: center;
     width: 100%;
-    overflow: hidden;
 }
 
 /*Section 1: Grid*/
@@ -68,3 +67,57 @@ h3{
     border-radius: 10px;
 }
 
+.suggestionList{
+    display: flex;
+    flex-direction: column;
+}
+/* 
+.list-item1,
+.list-item2,
+.list-item3,
+.list-item4,
+.list-item5,
+.list-item6{
+display: flex;
+} */
+
+.suggestionList div{
+    display: flex;
+    padding: 15px 10px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.suggestionList div::after{
+    content: '';
+    border-bottom: 1px solid #ccc;
+}
+
+.suggestionList div img{
+    width: 70px;
+    border-radius: 15px;
+}
+
+.service-heading{
+    width: 250px;
+    font-weight: 500;
+    text-align: left;
+    font-size: 28px;
+}
+
+.suggestions{
+
+    position: sticky;
+    top: -125px;
+
+  
+}
+
+.suggestionList div{
+    border-bottom: 1px solid #fbfbfb;
+}
+
+.suggestionList div:hover{
+    background-color: #fbfbfb;
+    cursor: pointer;
+}

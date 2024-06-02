@@ -1,7 +1,11 @@
+
+import ServiceHeader from "../components/ServiceHeader";
+
 function Services(){
     return(
         <>
-            <h1>Services Page</h1>
+            <ServiceHeader/>
+            
         </>
     )
 }
