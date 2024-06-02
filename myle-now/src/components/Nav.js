@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import LinkButton from './LinkButton';
 import './Nav.css'
 import React, { useState, useEffect } from 'react';
@@ -74,10 +75,12 @@ function Nav() {
     return (
       
       <nav>
-        <div className='logo'><h1>MYLE  NOW</h1></div>
+        <Link to ='/'>
+
+        <div className='logo'><h2>MYLE  NOW</h2></div>
+        </Link>
         <div className='search-boxes'>
             <input type='text' className='location'></input>
-           <img className='location-icon' src='./location.png'></img>
 
             <AnimatedInput placeholders={placeholders} />
            

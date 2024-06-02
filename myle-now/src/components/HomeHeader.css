@@ -34,7 +34,7 @@ h3{
     display: grid;
     grid-auto-columns: auto;
     grid-gap: 40px;
-    padding: 20px 20px;
+    padding: 15px 20px;
   }
   .suggestionGrid > div {
     text-align: center;

@@ -26,20 +26,20 @@ nav .search-boxes input{
     position: relative;
   }
 
-  .location-icon{
-    position: absolute;
-    width: 15px;
-    top: 38px;
-    left: 548px;
-  }
 
-.logo h1{
+.logo h2{
   font-weight: 400;
   letter-spacing: 10px;
   margin-left: 15px;
+  font-size: 28px;
+}
+nav a{
+
+  text-decoration: none;
+  color: black;
 }
 
-/* styles.css */
+
 @keyframes typewriter {
     from { width: 0; }
     to { width: 100%; }
@@ -84,7 +84,7 @@ nav .search-boxes input{
     pointer-events: none;
     white-space: nowrap;
     overflow: hidden;
-    width: calc(100% - 10px); /* Adjust based on input padding */
+    width: calc(100% - 10px); 
   }
   
   .placeholder-text {
