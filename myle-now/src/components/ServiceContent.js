@@ -1,27 +1,26 @@
 import main from '../assets/main.jpg';
+import ProductCard from './ProductCard';
 function ServiceContent(){
     return(
-        <>
+ 
+            <div className='service-content'>
+
              <section className='headerTransition'>
             
             
             <div className='transitions'>
                 <img src= {main} alt=''></img>  
             </div>
-            <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pellentesque erat tempor, varius nulla a, tincidunt tortor. Suspendisse pretium vestibulum maximus. Nunc rutrum, ex non faucibus porta, eros quam pellentesque mauris, a bibendum purus justo sed nisl. Integer vitae hendrerit felis, ut efficitur quam. Vivamus ultrices ac nibh venenatis suscipit. Aenean eleifend sodales sagittis. Vestibulum ultrices purus quis sapien feugiat, ut varius ante volutpat. Cras ut tellus congue, dapibus arcu id, auctor lacus. Proin luctus lacinia semper. In sit amet libero quis mauris pharetra accumsan nec sed erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur hendrerit, arcu eget suscipit efficitur, turpis lorem posuere magna, feugiat aliquet felis libero sollicitudin purus. Maecenas ac ullamcorper ligula.
-Phasellus facilisis massa sed congue bibendum. Quisque ac venenatis neque, id condimentum ante. Integer dictum, tellus et ultricies dignissim, lorem lectus euismod elit, ut condimentum elit dolor quis nibh. Praesent sit amet ex sed tellus semper eleifend eu at sem. Pellentesque pharetra tellus libero, at malesuada tortor egestas a. Nullam cursus nibh lorem, ut feugiat tortor mattis id. Pellentesque libero nulla, ullamcorper a felis eget, bibendum mattis turpis. Phasellus euismod metus et elit elementum gravida. Aliquam ullamcorper dignissim nibh ut venenatis. Phasellus a pretium neque, id tristique velit. Sed pharetra luctus blandit.
-Nulla facilisi. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus tincidunt congue ultrices. Quisque ut lobortis ligula. Maecenas molestie neque a massa fermentum vehicula. Donec ullamcorper rhoncus mauris, non pulvinar turpis sodales non. Maecenas hendrerit non arcu sed finibus. Sed lobortis justo at magna consectetur laoreet. Quisque at maximus dui, et ullamcorper ligula. Nam mollis quam dui, non viverra eros aliquam nec. Sed sed placerat massa. Pellentesque ullamcorper ligula nec tortor congue, a mattis augue porta. Phasellus mauris turpis, bibendum ut sapien non, scelerisque feugiat mi. Proin sodales mattis magna, ac luctus mauris mollis vitae. Vivamus varius gravida nisi in commodo.
-Vestibulum luctus justo et lacus gravida, eget tempus sem fermentum. Integer a tempus lorem. Proin at eleifend leo. Integer suscipit iaculis commodo. Nam ipsum erat, malesuada sit amet facilisis id, tristique ac dolor. Phasellus vel ullamcorper leo. Integer non nibh at arcu vehicula malesuada. In ultricies interdum augue, eu elementum nulla tincidunt eget. Pellentesque sit amet pellentesque felis. Nunc aliquet, sapien quis volutpat posuere, odio ante elementum erat, non ultricies justo augue iaculis leo.
-Cras pellentesque, odio et malesuada tempus, ipsum diam feugiat mauris, ut congue ipsum ligula aliquam eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac tincidunt orci, sagittis dapibus diam. Pellentesque ut consectetur arcu. Phasellus luctus diam et diam aliquam, vel finibus libero tempus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Maecenas dapibus dolor sit amet tortor egestas efficitur.
-Curabitur quis diam sit amet velit commodo accumsan. Vestibulum eget orci gravida, iaculis purus quis, tincidunt turpis. Duis posuere auctor arcu, a aliquet erat euismod id. In eu nisl risus. Donec pharetra euismod finibus. Mauris vitae ullamcorper neque. Vivamus ac sem semper, suscipit dolor et, volutpat augue. Morbi sapien nibh, laoreet in dolor nec, condimentum elementum eros. Quisque in odio tincidunt justo pretium commodo. Sed ornare mattis lorem vel semper. Duis sagittis consequat felis, non gravida est porta pulvinar. Mauris at facilisis felis, et viverra urna. Vivamus id nisi interdum, eleifend metus eget, blandit lorem. Nulla nec augue a massa accumsan ultricies ut in eros.
-Etiam eleifend risus at sapien euismod egestas. Duis eget bibendum metus. Mauris bibendum mi urna, eget elementum tellus viverra ac. Integer sit amet eros vel velit varius facilisis vel et quam. Vivamus mollis sapien in iaculis pretium. Mauris id orci a nisl consectetur tincidunt in eu dui. Sed nunc dui, tempus viverra nibh eget, vulputate pellentesque lectus. Nulla ac nunc posuere, commodo nulla sed, mattis magna. Fusce quis ligula tempor, ultricies diam a, convallis est. Curabitur eget tempus quam, at finibus lectus.
-Nullam a libero sapien. Duis et cursus nulla. Sed vestibulum velit id ipsum vulputate, sit amet tincidunt mi aliquet. Proin sit amet ante accumsan, cursus neque non, scelerisque leo. Donec venenatis, velit viverra dictum aliquam, massa nibh pulvinar mi, at tincidunt augue mi ut nibh. Cras in interdum mauris, accumsan auctor velit. Integer ut dictum lorem, eget elementum ex. Mauris consequat molestie laoreet. Phasellus massa quam, dignissim nec vestibulum non, ultricies at est. Nunc sed volutpat ipsum, commodo congue nunc. Vestibulum quis arcu lacus. Etiam consectetur libero sapien.
-Phasellus nec porta tortor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vestibulum tempor ligula sed mi volutpat placerat. Donec eget augue eleifend, dignissim libero eget, pulvinar risus. Praesent dictum diam ut lorem eleifend, ac consequat massa tincidunt. Nunc tempus dui at ex varius, a aliquam turpis vehicula. Mauris faucibus lacus quis erat tristique, eget rutrum felis posuere.
-Nunc a congue enim. Ut cursus sit amet eros nec porta. Morbi faucibus nibh vel convallis tincidunt. Donec diam dolor, convallis nec laoreet ac, auctor vitae augue. Proin condimentum, turpis in efficitur volutpat, orci nibh imperdiet diam, ut commodo massa tortor eu orci. Aliquam feugiat auctor ligula, ac vestibulum justo. Aliquam erat volutpat. Sed sem ligula, bibendum at aliquam quis, efficitur id dui. Praesent elementum enim sit amet ex consequat blandit. Sed viverra semper metus. Mauris viverra nec tellus eget dictum. Proin quis vestibulum dolor. Phasellus vitae tellus sit amet magna hendrerit molestie. Curabitur lobortis tellus nec quam facilisis, id malesuada turpis viverra.
-        </p>
         </section>
-        </>
+             <ProductCard id='1'/>
+            <ProductCard/>
+            <ProductCard/>
+            <ProductCard/>
+            </div>
+    
+        
+        
+        
     )
 }
 

@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Nopage from './pages/NoPage';
 import Register from './pages/Register';
 import Services from './pages/Services';
+import ServiceDetails from './pages/ServiceDetails';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route path='*' element={<Nopage/>}/>
       <Route path='/Register' element={<Register/>}/>
       <Route path='/Services' element={<Services/>}/>
+      <Route exact path={`ServiceDetails/:id`} element={<ServiceDetails/>}/>
     </Routes>
   
       

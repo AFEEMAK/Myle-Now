@@ -67,6 +67,9 @@ h3{
     border-radius: 10px;
 }
 
+
+/*Service Page*/
+
 .suggestionList{
     display: flex;
     flex-direction: column;
@@ -121,3 +124,13 @@ display: flex;
     background-color: #fbfbfb;
     cursor: pointer;
 }
+
+.service-content{
+    width: 70%;
+    margin: 70px 50px 50px 50px;
+}
+.service-content .headerTransition{
+    width: 100%;
+    margin: 0;
+}
+

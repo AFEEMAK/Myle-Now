@@ -1,0 +1,56 @@
+.details-topsection{
+    display: flex;
+    width: 70%;
+    margin: 50px auto;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    
+}
+
+.details-topsection .image img{
+    width: 100%;
+    border-radius: 10px;
+    justify-self: flex-end;
+}
+
+.details-topsection .image{
+    width: 45%;
+    margin: 10px auto;
+}
+
+.details-topsection .details{
+    width: 50%;
+    margin: 10px auto;
+    padding-left: 20px;
+}
+
+.details .desc{
+    width: 70%;
+    font-size: 14px;
+    
+}
+
+.details div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    margin-top: 30px;
+}
+
+.details div p{
+    font-weight: 800;
+    text-transform: uppercase;
+    
+}
+
+.details div button{
+    padding: 10px 35px;
+    background-color:#7444BD;
+    color: white;
+    border: none;
+    border-radius: 10px;
+}

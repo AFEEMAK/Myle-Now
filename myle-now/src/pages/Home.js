@@ -1,4 +1,3 @@
-import Footer from "../components/Footer";
 import HomeHeader from "../components/HomeHeader";
 
 
@@ -7,7 +6,7 @@ function Home(){
         <>
 
         <HomeHeader />
-        <Footer/>
+        
         </>
     )
 }
