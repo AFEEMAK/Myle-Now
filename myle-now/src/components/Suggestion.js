@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './HomeHeader.css';
 import SuggestionItem from './SugesstionItem';
 
@@ -10,12 +11,15 @@ function Suggestion({ children, layoutstyle }) {
         <h3>What are you looking for?</h3>
         <div className={checkLayoutType}>
             {children.map((child, index) => (
+                
+
                 <SuggestionItem
                     number={index + 1}
                     itemstyle={child.itemstyle}
                     image={child.image}
                     text={child.text}
-                />
+                    />
+            
             ))}
         </div>
         </>

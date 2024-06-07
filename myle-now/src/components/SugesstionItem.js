@@ -9,10 +9,12 @@ function SuggestionItem({ number, itemstyle, image, text }) {
     return (
         
         <div className={`${checkItemStyle}${number}`}>
+            <Link to='/services'>
             
             <img src={image} alt={text} />
             <p>{text}</p>
         
+        </Link>
         </div>
      
     );

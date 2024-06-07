@@ -1,0 +1,80 @@
+
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.process-section h2 {
+  margin: 50px 0  30px 0;
+}
+
+
+.list-ic a {
+  color: #303436;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: 700;
+}
+.list-ic p {
+  color: #788288;
+  text-decoration: none;
+  margin-left: 55px;
+  font-size: 17px;
+  margin-bottom: 50px;
+}
+.list-ic li {
+  position: relative;
+}
+.list-ic li span {
+  display: inline-block;
+  font-weight: 800;
+  width: 2em;
+  height: 2em;
+  text-align: center;
+  line-height: 2em;
+  border-radius: 1em;
+  background: #7444BD;
+  color: white;
+  position: relative;
+}
+.list-ic li::before {
+  content: '';
+  position: absolute;
+  background: #7444BD;
+  z-index: -1;
+}
+.list-ic.vertical {
+  padding: 0;
+  margin: 0;
+}
+.list-ic.vertical li {
+  list-style-type: none;
+  text-align: left;
+}
+.list-ic.vertical li span {
+  margin: 1.4em 0;
+}
+.list-ic.vertical li::before {
+  top: -106px;
+  left: 14px;
+  width: 0.2em;
+  height: 10em;
+}
+.list-ic li:first-child::before {
+  display: none;
+}
+.list-ic .active {
+  background: dodgerblue;
+}
+.list-ic .active ~ li {
+  background: lightblue;
+}
+.list-ic .active ~ li::before {
+  background: lightblue;
+}
+
+.process-section{
+    width: 70%;
+    margin: 100px auto;
+}

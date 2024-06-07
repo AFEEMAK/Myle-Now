@@ -5,7 +5,7 @@ import TopCategoryItems from './TopCategoryItems';
 function TopWomenCategories(){
 
     return(
-        <div>
+        <div className='top-categories'>
             <h2>SALON FOR WOMEN</h2>
             <TopCategoryItems 
             children = {[
