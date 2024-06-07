@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import ServiceDetailSection from "../components/ServiceDetailSection";
+import ServiceColoredSection from "../components/ServiceColoredSection";
 
 function ServiceDetails() {
   const { id } = useParams();
@@ -10,6 +11,7 @@ function ServiceDetails() {
   return (
     <>
       <ServiceDetailSection/>
+      <ServiceColoredSection/>
     </>
   );
 }

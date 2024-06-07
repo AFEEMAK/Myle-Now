@@ -32,12 +32,19 @@ h3{
 .suggestionGrid {
     display: grid;
     grid-auto-columns: auto;
-    grid-gap: 40px;
+    grid-gap: 20px;
     padding: 15px 20px;
   }
   .suggestionGrid > div {
     text-align: center;
     font-size: 12px; 
+    padding: 10px;
+    
+  }
+  .suggestionGrid div:hover{
+    background-color: #fbfbfb;
+    
+    border-radius: 10px;
   }
 
 .grid-item1 { grid-area: 1 / 1 / 2 / 2; }
@@ -51,6 +58,8 @@ h3{
     width: 100%;
     border-radius: 10px;
 }
+
+
 
 /*Section 2: image Transitions*/
 .header .headerTransition{
