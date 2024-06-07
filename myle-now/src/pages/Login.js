@@ -1,9 +1,13 @@
-function Login(){
-    return(
-        <>
-        
-        </>
-    )
-}
+import React from 'react';
+import LoginForm from '../components/LoginForm';
+import './Page.css';
 
-export default Login;
+const LoginPage = () => {
+    return (
+        <div className="login-page">
+            <LoginForm />
+        </div>
+    );
+};
+
+export default LoginPage;
