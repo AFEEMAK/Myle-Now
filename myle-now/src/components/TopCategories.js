@@ -9,10 +9,10 @@ function TopCategories(){
             <h2>TOP CATEGORIES</h2>
             <TopCategoryItems 
             children = {[
-                {image:massage , name:"MEN'S HAIRCUT" , desc:"Professional haircut that suits your face.", reviews:"4.8 (50k) "},
-                {image:massage , name:"MEN'S HAIRCUT" , desc:"Professional haircut that suits your face.", reviews:"4.8 (50k) "},
-                {image:massage , name:"MEN'S HAIRCUT" , desc:"Professional haircut that suits your face.", reviews:"4.8 (50k) "},
-                {image:massage , name:"MEN'S HAIRCUT" , desc:"Professional haircut that suits your face.", reviews:"4.8 (50k) "},   
+                {image:massage , name:"MEN'S HAIRCUT" , desc:"Professional haircut that suits your face.", reviews:"4.8 (50k) ",id:'1'},
+                {image:massage , name:"MEN'S HAIRCUT" , desc:"Professional haircut that suits your face.", reviews:"4.8 (50k) ",id:'2'},
+                {image:massage , name:"MEN'S HAIRCUT" , desc:"Professional haircut that suits your face.", reviews:"4.8 (50k) ",id:'3'},
+                {image:massage , name:"MEN'S HAIRCUT" , desc:"Professional haircut that suits your face.", reviews:"4.8 (50k) ",id:'4'},   
             ]}
             
             />

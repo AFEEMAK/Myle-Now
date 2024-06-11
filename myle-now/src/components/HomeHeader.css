@@ -123,12 +123,11 @@ display: flex;
     font-size: 28px;
 }
 
-.suggestions{
 
+
+.service-suggestions{
     position: sticky;
     top: -125px;
-
-  
 }
 
 .suggestionList div{

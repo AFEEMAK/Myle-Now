@@ -18,7 +18,7 @@ function App() {
       <Route path='/Login' element={<Login />}/>
       <Route path='*' element={<Nopage/>}/>
       <Route path='/Register' element={<Register/>}/>
-      <Route path='/Services' element={<Services/>}/>
+      <Route path={`/Services/:id`} element={<Services/>}/>
       <Route exact path={`ServiceDetails/:id`} element={<ServiceDetails/>}/>
     </Routes>
   

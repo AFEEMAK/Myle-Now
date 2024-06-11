@@ -6,11 +6,13 @@ import { Link } from 'react-router-dom';
 
 function TopCategoriesItem({children}){
 
+
 return(
     
             <div className='cards'>
                 {children.map((child) => (
-                    <Link to='/services'>
+                    
+                    <Link to={`/Services/${child.id}`}>
 
                     <CategoryCard
                     image = {child.image}

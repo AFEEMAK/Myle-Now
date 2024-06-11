@@ -18,6 +18,8 @@ function Suggestion({ children, layoutstyle }) {
                     itemstyle={child.itemstyle}
                     image={child.image}
                     text={child.text}
+                    id={child.id}
+                    linkstyle={child.linkstyle}
                     />
             
             ))}
