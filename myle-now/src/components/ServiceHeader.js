@@ -7,7 +7,7 @@ function ServiceHeader() {
     return (
         <>
             <div className='header'>
-                <section className="suggestions">
+                <section className="suggestions service-suggestions">
                     <div>
                         <h1 className='service-heading'>Salon Prime For Men & Kids</h1>
                     </div>
@@ -16,12 +16,12 @@ function ServiceHeader() {
                         <div className='suggestionsContainer'>
                             <Suggestion 
                                 children={[
-                                    { itemstyle: 'list-item', image: massage, text: 'Haircut and Beard styling' },
-                                    { itemstyle: 'list-item', image: massage, text: 'Haircut and Beard styling' },
-                                    { itemstyle: 'list-item', image: massage, text: 'Haircut and Beard styling' },
-                                    { itemstyle: 'list-item', image: massage, text: 'Haircut and Beard styling' },
-                                    { itemstyle: 'list-item', image: massage, text: 'Haircut and Beard styling' },
-                                    { itemstyle: 'list-item', image: massage, text: 'Haircut and Beard styling' }
+                                    { itemstyle: 'list-item', image: massage, text: 'Haircut and Beard styling', linkstyle:'inner-link', id:'haircut'},
+                                    { itemstyle: 'list-item', image: massage, text: 'Haircut and Beard styling', linkstyle:'inner-link' },
+                                    { itemstyle: 'list-item', image: massage, text: 'Haircut and Beard styling', linkstyle:'inner-link' },
+                                    { itemstyle: 'list-item', image: massage, text: 'Haircut and Beard styling', linkstyle:'inner-link' },
+                                    { itemstyle: 'list-item', image: massage, text: 'Haircut and Beard styling', linkstyle:'inner-link' },
+                                    { itemstyle: 'list-item', image: massage, text: 'Haircut and Beard styling', linkstyle:'inner-link' }
                                 ]}
                                 layoutstyle='suggestionList' 
                             />

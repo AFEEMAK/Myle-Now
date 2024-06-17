@@ -12,7 +12,7 @@ function ProductCard({id}){
                 <button>ADD</button>
             </div>
             <div className='product-details'>
-                <p className='product-name'>HAIRCUT FOR MEN</p>
+                <p id={'haircut'} className='product-name'>HAIRCUT FOR MEN</p>
                 <p className='product-desc'>Professional haircut that suits your face</p>
                 <p className='review-details'>4.8 (50k Reviews)</p>
                 <hr></hr>
