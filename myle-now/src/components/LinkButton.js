@@ -10,7 +10,20 @@ const ButtonStyles = {
       
 }
 
-export default function LinkButton({buttontext}){
+export default function LinkButton({buttontext, btnfuntion, btnlink}){
+   
+   if(btnfuntion){
+
+       return(
+
+           <>
+           <Link to='/Login'>
+       
+           <button onClick={btnfuntion} style={ButtonStyles}>{buttontext}</button>
+           </Link>
+           </>
+       )
+   }else{
     return(
         <>
         <Link to='/Login'>
@@ -19,4 +32,5 @@ export default function LinkButton({buttontext}){
         </Link>
         </>
     )
+}
 }

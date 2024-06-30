@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Form.css';
+import { useLogin } from "../hooks/useLogin"
+import './Form.css'; 
+
 
 const LoginForm = (props) => {
-  const [number, setNumber] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [numberError, setNumberError] = useState('')
-  const [passwordError, setPasswordError] = useState('')
+  const {login, error, isLoading} = useLogin()
 
-  const onButtonClick = () => {
-    // Handle button click
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    await login(email, password)
   }
 
   return (
-    <form className="login-form">
+    <form onSubmit={handleSubmit} className="login-form">
       <div className="mainContainer">
         <div className="titleContainer">
           <div>Login</div>
@@ -21,12 +24,11 @@ const LoginForm = (props) => {
         <br />
         <div className="inputContainer">
           <input
-            value={number}
-            placeholder="Enter your Phone Number"
-            onChange={(ev) => setNumber(ev.target.value)}
+            value={email}
+            placeholder="Enter your Phone email"
+            onChange={(ev) => setEmail(ev.target.value)}
             className="inputBox"
           />
-          <label className="errorLabel">{numberError}</label>
         </div>
         <br />
         <div className="inputContainer">
@@ -37,17 +39,22 @@ const LoginForm = (props) => {
             className="inputBox"
             type="password"
           />
-          <label className="errorLabel">{passwordError}</label>
         </div>
         <br />
         <div className="inputContainer">
-          <button className="btn" type="submit" onClick={onButtonClick}>Proceed</button>
+          <button disabled={isLoading} className="btn">Proceed</button>
         </div>
         <br />
+      <div className={'inputContainer'}>
+        {error && <p className='errorLabel'>{error}</p>}
+      </div>
+      <br></br>
         <div className="inputContainer">
           <span>Don't have an account? <Link to="/register" className="signupLink">Sign up</Link></span>
         </div>
       </div>
+
+
     </form>
   )
 }

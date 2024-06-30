@@ -1,60 +1,64 @@
 import React, { useState } from 'react';
+import { useSignup } from '../hooks/useSignup';
 import './Form.css';
 
+
 const RegisterForm = (props) => {
-  const [name, setName] = useState('')
-  const [number, setNumber] = useState('')
+ 
   const [email, setEmail] = useState('')
-  const [numberError, setNumberError] = useState('')
-  const [emailError, setEmailError] = useState('')
-  const [nameError, setNameError] = useState('')
+  const [password, setPassword] = useState('')
+  // const [passwordError, setPasswordError] = useState('')
+  // const [emailError, setEmailError] = useState('')
+  const {signup,error, isLoading} = useSignup()
 
 
+  const handleSubmit = async(e) => {
+  
+    e.preventDefault()
 
-  const onButtonClick = () => {
+    await signup(email,password)
+  
   }
 
   return (
-    <form className="login-form1" >
+    <form className="login-form" onSubmit={handleSubmit}>
     <div className={'mainContainer'}>
       <div className={'titleContainer'}>
         <div>Register</div>
       </div>
       <br />
+  
+     
       <div className={'inputContainer'}>
         <input
-          value={name}
-          placeholder="Enter your Name"
-          onChange={(ev) => setNumber(ev.target.value)}
-          className={'inputBox'}
-        />
-        <label className="errorLabel">{nameError}</label>
-      </div>
-      <br />
-      <div className={'inputContainer'}>
-        <input
-          value={number}
-          placeholder="Enter your Phone Number"
-          onChange={(ev) => setNumber(ev.target.value)}
-          className={'inputBox'}
-        />
-        <label className="errorLabel">{numberError}</label>
-      </div>
-      <br />
-      <div className={'inputContainer'}>
-        <input
+        type='email'
           value={email}
           placeholder="Enter your email here"
           onChange={(ev) => setEmail(ev.target.value)}
           className={'inputBox'}
         />
-        <label className="errorLabel">{emailError}</label>
+      
       </div>
       <br />
       <div className={'inputContainer'}>
-        <button className='btn' type="submit">Register</button>
+        <input
+          value={password}
+          placeholder="Enter your Password"
+          onChange={(ev) => setPassword(ev.target.value)}
+          className={'inputBox'}
+        />
+        
+      </div>
+      <br />
+      <div className={'inputContainer'}>
+        <button type='submit' disabled={isLoading} className='btn'>Register</button>
       </div>
     </div>
+      <div className={'inputContainer'}>
+        {error && <p className='errorLabel'>{error}</p>}
+      </div>
+    
+
     </form>
   )
 }
