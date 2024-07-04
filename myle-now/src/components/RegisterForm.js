@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useSignup } from '../hooks/useSignup';
 import './Form.css';
 
@@ -53,10 +54,16 @@ const RegisterForm = (props) => {
       <div className={'inputContainer'}>
         <button type='submit' disabled={isLoading} className='btn'>Register</button>
       </div>
-    </div>
+      <br></br>
       <div className={'inputContainer'}>
         {error && <p className='errorLabel'>{error}</p>}
       </div>
+      <br/>
+        <div className="inputContainer">
+          <span>Already have an account? <Link to="/Login" className="signupLink"> LOGIN</Link></span>
+        </div>
+    </div>
+   
     
 
     </form>

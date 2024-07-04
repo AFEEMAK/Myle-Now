@@ -25,7 +25,7 @@ const LoginForm = (props) => {
         <div className="inputContainer">
           <input
             value={email}
-            placeholder="Enter your Phone email"
+            placeholder="Enter your Email Address"
             onChange={(ev) => setEmail(ev.target.value)}
             className="inputBox"
           />
