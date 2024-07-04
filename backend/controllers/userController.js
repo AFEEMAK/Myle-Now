@@ -15,7 +15,7 @@ const loginUser = async (req, res) => {
   try {
     const user = await User.login(email, password);
     const token = createToken(user._id);
-
+    const role = user.role
     if (!user.verified) {
       let token = await Token.findOne({ userId: user._id });
       if (!token) {
@@ -29,7 +29,7 @@ const loginUser = async (req, res) => {
       return res.status(400).json({ error: "Email Not Verified!. Verification email has been sent to your email address" });
     }
 
-    res.status(200).json({ email, token });
+    res.status(200).json({ email, token ,role});
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

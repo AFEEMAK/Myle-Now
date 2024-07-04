@@ -75,6 +75,12 @@ const placeholders = [" 'House Cleaning'", " 'Men's Haircut'", " 'Pedicure'"];
 
 function Nav() {
     const {user} = useAuthContext()
+    let role = null;
+
+if (user) {
+  role = user.role; // Assuming user.role is a string like 'admin'
+  console.log('Role:', role);
+}
     const {logout} = useLogout()
     const handleClick = () => {
         logout()
@@ -86,6 +92,7 @@ function Nav() {
 
         <div className='logo'><h2>MYLE  NOW</h2></div>
         </Link>
+        
         <div className='search-boxes'>
             <input type='text' className='location'></input>
 
@@ -93,12 +100,19 @@ function Nav() {
            
             
         </div>
+        <div>
+    {role === 'admin' && (
+      <Link to='/admin/add/service'>Admin</Link>
+    )}
+  </div>
         {!user &&(
 
         <LinkButton buttontext='Login'></LinkButton>
         )}
         {user && (
-        <LinkButton buttontext='Logout' btnfuntion={handleClick}/>
+          
+        
+            <LinkButton buttontext='Logout' btnfuntion={handleClick}/>
         )}
        
       </nav>
