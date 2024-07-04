@@ -7,7 +7,6 @@ import Register from './pages/Register';
 import Services from './pages/Services';
 import ServiceDetails from './pages/ServiceDetails';
 
-
 function App() {
   return (
     <>
