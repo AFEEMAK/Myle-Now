@@ -2,6 +2,9 @@ import { Link } from 'react-router-dom';
 import LinkButton from './LinkButton';
 import './Nav.css'
 import React, { useState, useEffect } from 'react';
+import { useLogout } from '../hooks/useLogout';
+import { useAuthContext } from '../hooks/useAuthContext';
+
 const AnimatedInput = ({ placeholders = [""], ...passedProps }) => {
     const [currentPlaceholder, setCurrentPlaceholder] = useState('');
     const [placeholderIndex, setPlaceholderIndex] = useState(0);
@@ -47,6 +50,7 @@ const AnimatedInput = ({ placeholders = [""], ...passedProps }) => {
         setIsTyping(event.target.value.length > 0);
     };
 
+
     return (
         <div className="animated-placeholder-container">
             <input
@@ -70,8 +74,11 @@ const placeholders = [" 'House Cleaning'", " 'Men's Haircut'", " 'Pedicure'"];
 
 
 function Nav() {
-    
- 
+    const {user} = useAuthContext()
+    const {logout} = useLogout()
+    const handleClick = () => {
+        logout()
+    }
     return (
       
       <nav>
@@ -86,8 +93,13 @@ function Nav() {
            
             
         </div>
-     
-        <LinkButton buttontext='Login'/>
+        {!user &&(
+
+        <LinkButton buttontext='Login'></LinkButton>
+        )}
+        {user && (
+        <LinkButton buttontext='Logout' btnfuntion={handleClick}/>
+        )}
        
       </nav>
       
