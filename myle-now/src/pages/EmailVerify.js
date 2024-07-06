@@ -1,39 +1,61 @@
-import { useState, useEffect, Fragment } from "react";
-import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const EmailVerify = () => {
   const [validUrl, setValidUrl] = useState(false);
   const params = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const verifyEmailUrl = async () => {
       try {
         const url = `/api/user/users/${params.id}/verify/${params.token}`; // Note the relative URL
-        const { data } = await axios.get(url);
-        console.log(data);
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Invalid link');
+        }
+
+        const data = await response.json();
+        console.log('data', data);
         setValidUrl(true);
+        toast.success('Email Verified! Redirecting to login...', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        
+        setTimeout(() => {
+          navigate('/Login');
+        }, 5000); // Redirect after 5 seconds
       } catch (error) {
         console.log(error);
-        setValidUrl(false);
+        if (!validUrl) {
+          toast.error('Invalid Link', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
       }
     };
     verifyEmailUrl();
-  }, [params]);
+  }, [params, validUrl, navigate]);
 
   return (
-    <Fragment>
-      {validUrl ? (
-        <div>
-          <h1>EMAIL VERIFIED</h1>
-          <Link to='/login'>
-            <p>Login</p>
-          </Link>
-        </div>
-      ) : (
-        <h1>404 Not Found</h1>
-      )}
-    </Fragment>
+    <div>
+      <ToastContainer />
+      {validUrl ? null : <h1>Invalid Link</h1>}
+    </div>
   );
 };
 

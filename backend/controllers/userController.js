@@ -15,7 +15,7 @@ const loginUser = async (req, res) => {
   try {
     const user = await User.login(email, password);
     const token = createToken(user._id);
-
+    const role = user.role
     if (!user.verified) {
       let token = await Token.findOne({ userId: user._id });
       if (!token) {
@@ -26,10 +26,10 @@ const loginUser = async (req, res) => {
         const url = `${process.env.BASE_URL}users/${user._id}/verify/${token.token}`;
         await sendEmail(user.email, "Verification Email", url);
       }
-      return res.status(400).send({ message: "Verification email has been sent to your email address" });
+      return res.status(400).json({ error: "Email Not Verified!. Verification email has been sent to your email address" });
     }
 
-    res.status(200).json({ email, token });
+    res.status(200).json({ email, token ,role});
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -42,7 +42,7 @@ const signupUser = async (req, res) => {
   try {
     const user = await User.signup(email, password);
     const token = createToken(user._id);
-    res.status(200).json({ email, token });
+    res.status(200).json({ error:'Verification email has been sent' });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
