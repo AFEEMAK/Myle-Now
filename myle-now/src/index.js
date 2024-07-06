@@ -7,16 +7,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import Footer from './components/Footer';
-import {AuthContextProvider } from './context/AuthContext';
+import { AuthContextProvider } from './context/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
       <BrowserRouter>
-      <Nav />
-      <App />
-      <Footer></Footer>
+        <Nav />
+        <App />
+        <Footer></Footer>
       </BrowserRouter>
     </AuthContextProvider>
   </React.StrictMode>
