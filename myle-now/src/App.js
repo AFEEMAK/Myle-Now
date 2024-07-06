@@ -8,6 +8,9 @@ import Register from './pages/Register';
 import Services from './pages/Services';
 import ServiceDetails from './pages/ServiceDetails';
 import EmailVerify from './pages/EmailVerify';
+import Cart from './pages/Cart';
+import OrderDetailsCS from './pages/OrderDetailsCS';
+import OrderDetailsSP from './pages/OrderDetailsSP';
 
 function App() {
   const { user } = useAuthContext();
@@ -23,6 +26,9 @@ function App() {
         <Route path='/services/:id' element={<Services />} />
         <Route path='/users/:id/verify/:token' element={<EmailVerify />} />
         <Route exact path='/serviceDetails/:id' element={<ServiceDetails />} />
+        <Route exact path='/Cart' element={<Cart />} />
+        <Route exact path='/OrderDetailsCS' element={<OrderDetailsCS/>} />
+        <Route exact path='/OrderDetailsSP' element={<OrderDetailsSP/>} />
       </Routes>
     </>
   );
