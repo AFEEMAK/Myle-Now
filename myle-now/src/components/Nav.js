@@ -4,6 +4,7 @@ import './Nav.css'
 import React, { useState, useEffect } from 'react';
 import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
+import search from '../assets/search.png'
 
 const AnimatedInput = ({ placeholders = [""], ...passedProps }) => {
     const [currentPlaceholder, setCurrentPlaceholder] = useState('');
@@ -63,7 +64,7 @@ const AnimatedInput = ({ placeholders = [""], ...passedProps }) => {
             />
             {!isFocused && !isTyping && (
                 <div className="placeholder-wrapper">
-                    <span className="static-text"><img src='./search.png' alt='search box icon'></img>Search for </span>
+                    <span className="static-text"><img src={search} alt='search box icon'></img>Search for </span>
                     <span className="placeholder-text">{currentPlaceholder}</span>
                 </div>
             )}

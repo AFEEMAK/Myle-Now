@@ -1,7 +1,63 @@
 import { useParams } from "react-router-dom";
-import ServiceDetailSection from "../components/ServiceDetailSection";
+
 import ServiceColoredSection from "../components/ServiceColoredSection";
-import DetailsInsList from "../components/DetailsInsList";
+
+import '../components/DetailsInsList.css'
+import '../components/ServiceDetailSection.css'
+
+import main from '../assets/main.jpg';
+
+function ServiceDetailSection(){
+    return(
+        <div className='details-topsection'> 
+            <div className="details">
+                <h2>Haircut For Men</h2>
+                <p className='desc'>At MYLEZ, we take pride in offering exceptional professional haircut services tailored to meet your individual style needs. Our team of highly skilled and experienced stylists is dedicated to providing you with a personalized and satisfying haircut experience.</p>
+                <div>
+                    <p>Cad 50</p>
+                    <button>Add</button>
+                </div>
+            </div>
+            <div className="image">
+                <img src= {main} alt={main}></img>
+            </div>
+        </div>
+    )
+}
+
+
+
+
+
+function DetialsInsListItem({number , text,desc}){
+    return(
+    <li>
+    <span>{number}</span>
+    <a href="#">{text}</a><br></br>
+    <p href="#">{desc}</p>
+  </li>
+    )
+}
+
+function DetailsInsList({children}){
+return(
+    <div className='process-section'>
+    <h2>About The Process</h2>
+
+<ul class="list-ic vertical">
+
+    {children.map((child, index) => (
+                <DetialsInsListItem
+                    number={index + 1}
+                    text={child.text}
+                    desc={child.desc}
+                />
+            ))}
+</ul>
+    </div>
+)
+}
+
 
 function ServiceDetails() {
   const { id } = useParams();
