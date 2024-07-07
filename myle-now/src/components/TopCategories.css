@@ -1,17 +1,16 @@
-.top-categories h2{
+.top-categories h2 {
     text-align: center;
-    margin:30px 20px 40px 20px;
+    margin: 30px 20px 40px 20px;
 }
 
-.cards{
+.cards {
     margin: 40px 0px;
-    display:flex;
-    width:100%;
+    display: flex;
+    width: 100%;
     justify-content: center;
-  
 }
 
-.cardDetails{
+.cardDetails {
     width: 70%;
     margin: 0 20px 0 20px;
     display: flex;
@@ -21,27 +20,118 @@
     border: 1px solid #E4E4E4;
     border-radius: 10px;
 }
-.cardDetails a{
+
+.cardDetails a {
     text-decoration: none;
     color: black;
     margin: 0 auto;
     width: 100%;
 }
 
-.cardDetails img{
-    width:90%;
+.cardDetails img {
+    width: 90%;
     margin-top: 10px;
     border-radius: 10px;
 }
-.categoryHeading{
+
+.categoryHeading {
     width: 90%;
     text-align: left;
     margin-bottom: 5px;
     height: 50px;
 }
-.cardDetails p{
+
+.cardDetails p {
     text-align: left;
     width: 90%;
     font-size: 14px;
     margin-bottom: 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .cardDetails {
+        width: 80%;
+    }
+
+    .cardDetails img {
+        width: 85%;
+    }
+
+    .categoryHeading {
+        font-size: 16px;
+    }
+
+    .cardDetails p {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 992px) {
+    .cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cardDetails {
+        width: 90%;
+    }
+
+    .cardDetails img {
+        width: 80%;
+    }
+
+    .categoryHeading {
+        font-size: 15px;
+    }
+
+    .cardDetails p {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cardDetails {
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    .cardDetails img {
+        width: 75%;
+    }
+
+    .categoryHeading {
+        font-size: 14px;
+    }
+
+    .cardDetails p {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 576px) {
+    .top-categories h2 {
+        font-size: 24px;
+        margin: 20px 10px 30px 10px;
+    }
+
+    .cards {
+        margin: 20px 0;
+    }
+
+    .cardDetails {
+        padding: 15px;
+    }
+
+    .cardDetails img {
+        width: 70%;
+    }
+
+    .categoryHeading {
+        font-size: 13px;
+    }
+
+    .cardDetails p {
+        font-size: 10px;
+    }
 }

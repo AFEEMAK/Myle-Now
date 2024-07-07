@@ -1,9 +1,34 @@
-.coverImg{
+.coverImg {
     display: flex;
     justify-content: center;
-    margin: 80px 0px;
+    margin: 80px 0;
 }
-.coverImg img{
-    width:60%;
+
+.coverImg img {
+    width: 60%;
     border-radius: 20px;
+}
+
+@media (max-width: 1200px) {
+    .coverImg img {
+        width: 70%;
+    }
+}
+
+@media (max-width: 992px) {
+    .coverImg img {
+        width: 80%;
+    }
+}
+
+@media (max-width: 768px) {
+    .coverImg img {
+        width: 90%;
+    }
+}
+
+@media (max-width: 576px) {
+    .coverImg img {
+        width: 100%;
+    }
 }

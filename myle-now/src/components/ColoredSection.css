@@ -1,5 +1,5 @@
-.coloredContainer{
-    width:100%;
+.coloredContainer {
+    width: 100%;
     background-color: #EEE9E8;
     padding-bottom: 40px;
     margin: 80px 0px;
@@ -9,31 +9,97 @@
     display: flex;
     justify-content: center;
 }
-.line-text{
- margin: 40px 20px;
+
+.line-text {
+    margin: 40px 20px;
 }
 
-hr{
- margin: 50px 0px;
- border-bottom:1px solid black ;
- border-top: none;
- border-left: none;
- border-right: none;
- width:40%;
-    
+hr {
+    margin: 50px 0px;
+    border-bottom: 1px solid black;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: 40%;
 }
-.coloredItems{
-    display:flex;
-    width:100%;
+
+.coloredItems {
+    display: flex;
+    width: 100%;
     justify-content: center;
-   
 }
-.coloredItems .item{
+
+.coloredItems .item {
     margin: 0px 20px;
-    width:10%;
+    width: 10%;
 }
-.item img{
+
+.item img {
     width: 100%;
     border-radius: 10px;
-    
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .coloredItems {
+        flex-wrap: wrap;
+    }
+
+    .coloredItems .item {
+        width: 20%;
+        margin: 10px;
+    }
+}
+
+@media (max-width: 992px) {
+    .coloredItems .item {
+        width: 25%;
+        margin: 10px;
+    }
+
+    .line-text {
+        margin: 30px 15px;
+        font-size: 18px;
+    }
+
+    hr {
+        width: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .coloredItems .item {
+        width: 30%;
+        margin: 10px;
+    }
+
+    .line-text {
+        margin: 20px 10px;
+        font-size: 16px;
+    }
+
+    hr {
+        width: 60%;
+    }
+}
+
+@media (max-width: 576px) {
+    .coloredItems {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .coloredItems .item {
+        width: 80%;
+        margin: 10px 0;
+    }
+
+    .line-text {
+        margin: 20px 5px;
+        font-size: 14px;
+    }
+
+    hr {
+        width: 80%;
+    }
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../components/CheckoutPage.css'; 
+import '../components/CartItems.css';
 
 const CheckoutPage = () => {
     const [formData, setFormData] = useState({
@@ -14,11 +15,6 @@ const CheckoutPage = () => {
         zip: '',
         country: 'Canada'
     });
-
-    const cart = [
-        { id: 1, name: 'Haircut For Men', price: 100, image: 'massage.png', details: 'Hair Style Package'},
-        { id: 2, name: 'Beard Trimming', price: 25, image: 'massage.png', details: 'Beard Trimming' }
-    ];
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -35,21 +31,26 @@ const CheckoutPage = () => {
 
     return (
         <div className="checkout-page">
-            <div className="cart-details">
-                <h2>Checkout</h2>
-                {cart.map((item) => (
-                    <div key={item.id} className="product-card">
-                        <img src={item.image} alt={item.name} className="product-img" />
-                        <div className="product-info">
-                            <div className="product-details">
-                                <h3>{item.name}</h3>
-                                <p>{item.details}</p>
-                                <p>Price: ${item.price}</p>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
+            <section class="cartSummary">
+                <h2 class="cartSummaryHeading">SUMMARY</h2>
+                <div class="subtotal">
+                    <p class="p1">Subtotal (1 Items)</p>
+                    <p class="p2">50 CAD</p>
+                </div>
+                <div class="subtotal">
+                    <p class="p1">Shipping and Handling</p>
+                    <p class="p2">5 CAD</p>
+                </div>
+                <div class="subtotal">
+                    <p class="p1">Tax (Calculated At Checkout)</p>
+                    <p class="p2">0 CAD</p>
+                </div>
+                <hr></hr>
+                <div class="subtotal">
+                    <p class="bold">TOTAL</p>
+                    <p class="bold">55 CAD</p>
+                </div>
+            </section>
             <div className="checkout-form">
                 <h2>Customer Information</h2>
                 <form onSubmit={handleCheckout}>
@@ -94,7 +95,6 @@ const CheckoutPage = () => {
                         <select id="country" name="country" value={formData.country} onChange={handleInputChange} required>
                             <option value="Canada">Canada</option>
                             <option value="USA">USA</option>
-                            {}
                         </select>
                     </div>
                     <button class="btnn" type="submit">Checkout</button>

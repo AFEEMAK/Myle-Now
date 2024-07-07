@@ -1,51 +1,54 @@
-.header{
-    display:flex;
+.header {
+    display: flex;
     justify-content: center;
     width: 100%;
 }
 
 /*Section 1: Grid*/
-.suggestions{
+.suggestions {
     display: flex;
     flex-direction: column;
 }
 
-h1{
+h1 {
     text-align: center;
     font-size: 30px;
 }
 
-.header .suggestions{
-    width:30% ;
+.header .suggestions {
+    width: 30%;
     height: fit-content;
-    padding:20px;
-    margin:0px 50px 50px 50px;
+    padding: 20px;
+    margin: 0px 50px 50px 50px;
 }
-.suggestionsContainer{
+
+.suggestionsContainer {
     border: 1px solid #E4E4E4;
     border-radius: 10px;
 }
-h3{
- width:100%;
- text-align: center;
+
+h3 {
+    width: 100%;
+    text-align: center;
 }
+
 .suggestionGrid {
     display: grid;
     grid-auto-columns: auto;
     grid-gap: 20px;
     padding: 15px 20px;
-  }
-  .suggestionGrid > div {
+}
+
+.suggestionGrid > div {
     text-align: center;
-    font-size: 12px; 
+    font-size: 12px;
     padding: 10px;
-    
-  }
-  .suggestionGrid div:hover{
+}
+
+.suggestionGrid div:hover {
     background-color: #fbfbfb;
-    
     border-radius: 10px;
-  }
+}
 
 .grid-item1 { grid-area: 1 / 1 / 2 / 2; }
 .grid-item2 { grid-area: 1 / 2 / 2 / 3; }
@@ -54,50 +57,38 @@ h3{
 .grid-item5 { grid-area: 2 / 2 / 3 / 3; }
 .grid-item6 { grid-area: 2 / 3 / 3 / 4; }
 
-.suggestionGrid div img{
+.suggestionGrid div img {
     width: 100%;
     border-radius: 10px;
 }
 
-.suggestionGrid a{
+.suggestionGrid a {
     color: black;
     text-decoration: none;
 }
 
-
 /*Section 2: image Transitions*/
-.header .headerTransition{
-    width:70%;
+.header .headerTransition {
+    width: 70%;
     margin: 70px 50px 50px 50px;
 }
 
-.headerTransition{
+.headerTransition {
     text-align: center;
 }
 
-.headerTransition div img{
-    width:100%;
+.headerTransition div img {
+    width: 100%;
     border-radius: 10px;
 }
 
-
 /*Service Page*/
-
-.suggestionList{
+.suggestionList {
     display: flex;
     flex-direction: column;
 }
-/* 
-.list-item1,
-.list-item2,
-.list-item3,
-.list-item4,
-.list-item5,
-.list-item6{
-display: flex;
-} */
 
-.suggestionList div a{
+.suggestionList div a {
     display: flex;
     padding: 15px 10px;
     justify-content: space-evenly;
@@ -106,45 +97,121 @@ display: flex;
     color: black;
 }
 
-.suggestionList div::after{
+.suggestionList div::after {
     content: '';
     border-bottom: 1px solid #ccc;
 }
 
-.suggestionList div a img{
+.suggestionList div a img {
     width: 70px;
     border-radius: 15px;
 }
 
-.service-heading{
+.service-heading {
     width: 250px;
     font-weight: 500;
     text-align: left;
     font-size: 28px;
 }
 
-
-
-.service-suggestions{
+.service-suggestions {
     position: sticky;
     top: -125px;
 }
 
-.suggestionList div{
+.suggestionList div {
     border-bottom: 1px solid #fbfbfb;
 }
 
-.suggestionList div:hover{
+.suggestionList div:hover {
     background-color: #fbfbfb;
     cursor: pointer;
 }
 
-.service-content{
+.service-content {
     width: 70%;
     margin: 70px 50px 50px 50px;
 }
-.service-content .headerTransition{
+
+.service-content .headerTransition {
     width: 100%;
     margin: 0;
 }
 
+@media (max-width: 1200px) {
+    .header .suggestions {
+        width: 40%;
+    }
+
+    .header .headerTransition {
+        width: 80%;
+        margin: 50px 30px 30px 30px;
+    }
+
+    .service-content {
+        width: 80%;
+        margin: 50px 30px 30px 30px;
+    }
+}
+
+@media (max-width: 992px) {
+    .header .suggestions {
+        width: 50%;
+    }
+
+    .header .headerTransition {
+        width: 90%;
+        margin: 30px 20px 20px 20px;
+    }
+
+    .service-content {
+        width: 90%;
+        margin: 30px 20px 20px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+    }
+
+    .header .suggestions {
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    .header .headerTransition {
+        width: 100%;
+        margin: 20px 10px 10px 10px;
+    }
+
+    .service-content {
+        width: 100%;
+        margin: 20px 10px 10px 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .suggestionGrid {
+        grid-template-columns: 1fr;
+        grid-gap: 10px;
+        padding: 10px;
+    }
+
+    .suggestionGrid > div {
+        font-size: 10px;
+        padding: 5px;
+    }
+
+    .suggestionList div a {
+        flex-direction: column;
+    }
+
+    .suggestionList div a img {
+        width: 50px;
+    }
+
+    .service-heading {
+        font-size: 24px;
+    }
+}
