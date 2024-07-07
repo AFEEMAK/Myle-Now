@@ -1,4 +1,5 @@
 import massage from '../assets/massage.png';
+import rightArrow from '../assets/right-arrow.png';
 import './ProductCard.css'
 import { Link } from 'react-router-dom';
 
@@ -8,7 +9,7 @@ function ProductCard({id}){
         <Link  style={{textDecoration:'none',color:'inherit'}} to={`/ServiceDetails/${id}`}>
         <div className='product-card'>
             <div className='product-image'>
-                <img src={massage} />
+                <img src={massage} alt={massage} />
                 <button>ADD</button>
             </div>
             <div className='product-details'>
@@ -18,7 +19,7 @@ function ProductCard({id}){
                 <hr></hr>
                 <div className='time-info'>
                     <p>CAD 50 - <span style={{color: '#8d8d8d'}}>30 mins</span></p>
-                    <img src='./right-arrow.png'></img>
+                    <img src={rightArrow} alt='right arrow icon'></img>
                 </div>
             </div>
         </div>

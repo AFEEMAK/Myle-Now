@@ -33,8 +33,9 @@ function DetialsInsListItem({number , text,desc}){
     return(
     <li>
     <span>{number}</span>
+    {/* eslint-disable-next-line*/}
     <a href="#">{text}</a><br></br>
-    <p href="#">{desc}</p>
+    <p>{desc}</p>
   </li>
     )
 }
