@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
 import search from '../assets/search.png'
+import hamburger from '../assets/hamburger.png'
 
 const AnimatedInput = ({ placeholders = [""], ...passedProps }) => {
     const [currentPlaceholder, setCurrentPlaceholder] = useState('');
@@ -77,7 +78,11 @@ const placeholders = [" 'House Cleaning'", " 'Men's Haircut'", " 'Pedicure'"];
 function Nav() {
     const {user} = useAuthContext()
     let role = null;
+    const [sideNavVisible, setSideNavVisible] = useState(false);
 
+    const toggleSideNav = () => {
+        setSideNavVisible(!sideNavVisible);
+    };
 if (user) {
   role = user.role; // Assuming user.role is a string like 'admin'
   console.log('Role:', role);
@@ -103,7 +108,7 @@ if (user) {
         </div>
         <div>
     {role === 'admin' && (
-      <Link to='/admin/add/service'>Admin</Link>
+      <Link className='admin-links' to='/admin/add/service'>Admin</Link>
     )}
   </div>
         {!user &&(
@@ -116,6 +121,29 @@ if (user) {
             <LinkButton buttontext='Logout' btnfuntion={handleClick}/>
         )}
        
+
+       <img src={hamburger} alt="menu" className="hamburger-icon" onClick={toggleSideNav} />
+       <div className={`side-nav ${sideNavVisible ? 'visible' : ''}`}>
+                <div className='search-boxes'>
+                    <input type='text' className='location' />
+                    <AnimatedInput placeholders={placeholders} />
+                </div>
+
+                {!user &&(
+
+<LinkButton buttontext='Login'></LinkButton>
+)}
+{user && (
+  
+
+    <LinkButton buttontext='Logout' btnfuntion={handleClick}/>
+)}
+
+{role === 'admin' && (
+      <Link className='admin-links' to='/admin/add/service'>Admin</Link>
+    )}
+        </div>
+
       </nav>
       
     );

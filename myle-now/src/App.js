@@ -6,26 +6,17 @@ import Nopage from './pages/NoPage';
 import Register from './pages/Register';
 import Services from './pages/Services';
 import ServiceDetails from './pages/ServiceDetails';
-<<<<<<< HEAD
-import CheckoutPage from './pages/Checkout';
-import EmailVerify from './pages/EmailVerify';
-import AddService from './pages/AddService';
-import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
-import OrderDetailsSP from './pages/OrderDetailsSP';
-import OrderDetailsCS from './pages/OrderDetailsCS';
-import CreateAccount from './pages/CreateAccount'; 
-=======
-import Checkout from './pages/Checkout';
+import CreateAccount from './pages/CreateAccount';
 import EmailVerify from './pages/EmailVerify';
 import AddService from './pages/AddService';
 import Cart from './pages/Cart';  
 import OrderDetailsCS from './pages/OrderDetailsCS';
 import OrderDetailsSP from './pages/OrderDetailsSP';
+import AboutUs from './components/AboutUs';
 
 
 
->>>>>>> 6a19eb79eef0073615e5dea5327aebd168c6d7aa
 
 function App() {
   const { user } = useAuthContext();
@@ -43,7 +34,6 @@ function App() {
         <Route path='/login' element={!user ? <Login /> : <Navigate to='/' />} />
         <Route path='*' element={<Nopage />} />
         <Route path='/register' element={!user ? <Register /> : <Navigate to='/' />} />
-<<<<<<< HEAD
         <Route path='/services/:id' element={<Services />} />
         <Route path='/serviceDetails/:id' element={<ServiceDetails />} />
         <Route path='/checkout' element={<Checkout />} />
@@ -52,18 +42,8 @@ function App() {
         <Route path='/cart' element={<Cart />} />
         <Route path='/ordersCS' element={<OrderDetailsCS />} />
         <Route path='/ordersSP' element={<OrderDetailsSP />} />
-        <Route path='/create-account' element={<CreateAccount />} /> {}
-=======
-        <Route path='/admin/add/service' element={role === 'admin' ? <AddService /> : <Navigate to='/'/> } />
-        <Route path='/services/:id' element={<Services />} />
-        <Route path='/users/:id/verify/:token' element={<EmailVerify />} />
-        <Route exact path='/serviceDetails/:id' element={<ServiceDetails />} />
-        <Route exact path='/cart' element={<Cart />} />
-        <Route exact path='/ordersCS' element={<OrderDetailsCS />} />
-        <Route exact path='/ordersSP' element={<OrderDetailsSP />} />
-        <Route exact path='/checkout' element={<Checkout />} />
-        
->>>>>>> 6a19eb79eef0073615e5dea5327aebd168c6d7aa
+        <Route path='/create-account' element={<CreateAccount />} /> 
+        <Route path='/about' element={<AboutUs/>}/>
       </Routes>
     </>
   );

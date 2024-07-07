@@ -6,6 +6,10 @@ nav {
   box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
 }
 
+.hamburger-icon{
+  display: none;
+}
+
 nav .search-boxes input {
   padding: 10px 10px;
   margin: 10px;
@@ -93,17 +97,66 @@ nav a {
   padding-bottom: 8px;
 }
 
-@media (max-width: 768px) {
+
+
+.side-nav {
+  display: none;
+  position: fixed;
+  top: 5%;
+  right: 0;
+  width: 250px;
+  height: 100%;
+  background-color: white;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+  padding: 20px;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(100%);
+}
+
+
+
+.side-nav .search-boxes{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.side-nav .search-boxes input{
+  width: 100%;
+}
+
+.side-nav.visible {
+  display: block; /* Show the side nav */
+  transform: translateX(0); /* Slide in the side nav */
+}
+
+
+
+@media (max-width: 1120px) {
   nav {
       padding: 0px 20px;
-      flex-direction: column;
+      
   }
 
+  .admin-links{
+    display: none;
+  }
+
+  .hamburger-icon{
+    display: block;
+    width: 25px;
+  }
   .search-boxes {
       flex-direction: column;
       align-items: stretch;
+      display: none;
   }
 
+  .side-nav .search-boxes{
+    display: block;
+  }
   nav .search-boxes input {
       width: 100%;
       margin: 5px 0;
@@ -112,6 +165,23 @@ nav a {
   .logo h2 {
       margin: 10px 0;
       font-size: 24px;
+  }
+  .nav-button{
+    display: none;
+  }
+
+  .side-nav .nav-button{
+    display: block;
+    margin-top: 50px;
+    width: 90%;
+    margin-left: auto ;
+    margin-right: auto ;
+  }
+
+  .side-nav .admin-links{
+    display: block;
+    margin-top: 50px;
+    text-align: center;
   }
 }
 

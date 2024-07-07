@@ -139,31 +139,43 @@ h3 {
 }
 
 @media (max-width: 1200px) {
-    .header .suggestions {
-        width: 40%;
+    .header{
+        flex-direction:column-reverse;
     }
-
+  
     .header .headerTransition {
-        width: 80%;
-        margin: 50px 30px 30px 30px;
+        width: 90%;
+        margin: 50px auto;
     }
 
     .service-content {
         width: 80%;
         margin: 50px 30px 30px 30px;
     }
+
+    .header .suggestions{
+        width: 90%;
+        margin: 50px auto;
+       
+    }
+
+  
+    .suggestionsContainer img{
+        width: 70%;
+        /* height: 100px; */
+    }
 }
 
 @media (max-width: 992px) {
-    .header .suggestions {
-        width: 50%;
-    }
+
 
     .header .headerTransition {
-        width: 90%;
+        width: 100%;
         margin: 30px 20px 20px 20px;
     }
-
+    .headerTransition div img{
+        width: 90%;
+    }
     .service-content {
         width: 90%;
         margin: 30px 20px 20px 20px;
@@ -172,7 +184,11 @@ h3 {
 
 @media (max-width: 768px) {
     .header {
-        flex-direction: column;
+        flex-direction:column-reverse;
+    }
+
+    .headerTransition div img{
+        width: 100%;
     }
 
     .header .suggestions {
@@ -193,7 +209,7 @@ h3 {
 
 @media (max-width: 576px) {
     .suggestionGrid {
-        grid-template-columns: 1fr;
+        
         grid-gap: 10px;
         padding: 10px;
     }
@@ -214,4 +230,22 @@ h3 {
     .service-heading {
         font-size: 24px;
     }
+
+    .grid-item1 { 
+        grid-area: 1 / 1 / 2 / 2;
+        width: 90%;
+     }
+.grid-item2 { grid-area: 1 / 2 / 2 / 3;width: 90%; }
+.grid-item3 { grid-area: 2 / 1 / 2 / 2; width: 90%;}
+.grid-item4 { grid-area: 2 / 2 / 3 / 2;width: 90%; }
+.grid-item5 {display: none;}
+.grid-item6 {display: none;}
+
+.grid-item1 p,
+.grid-item2 p,
+.grid-item3 p,
+.grid-item4 p{
+    font-size: 14px;
+}
+
 }

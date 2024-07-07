@@ -15,13 +15,13 @@ function Footer(){
             <div className='links'>
                 <section>
                     <h3>COMPANY</h3>
-                    <Link to= '/'><p>About</p></Link>
+                    <Link to= '/about'><p>About</p></Link>
                     <Link to= '/'><p>Contact</p></Link>
                 </section>
 
                 <section>
                 <h3>FOR CUSTOMERS</h3>
-                <Link to= '/'><p>Cart</p></Link>
+                <Link to= '/cart'><p>Cart</p></Link>
                 <Link to= '/'><p>Discover Categories</p></Link>
                 </section>
 

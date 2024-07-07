@@ -11,7 +11,7 @@
     min-width: 300px;
 }
 
-.product-card {
+.checkout-productCard {
     display: flex;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -89,7 +89,7 @@ select {
         margin-bottom: 20px;
     }
 
-    .product-card {
+    .checkout-productCard {
         flex-direction: column;
     }
 

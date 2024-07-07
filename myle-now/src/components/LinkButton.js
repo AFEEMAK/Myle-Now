@@ -19,7 +19,7 @@ export default function LinkButton({buttontext, btnfuntion, btnlink}){
            <>
            <Link to='/Login'>
        
-           <button onClick={btnfuntion} style={ButtonStyles}>{buttontext}</button>
+           <button className="nav-button" onClick={btnfuntion} style={ButtonStyles}>{buttontext}</button>
            </Link>
            </>
        )
@@ -28,7 +28,7 @@ export default function LinkButton({buttontext, btnfuntion, btnlink}){
         <>
         <Link to='/Login'>
 
-        <button style={ButtonStyles}>{buttontext}</button>
+        <button className="nav-button" style={ButtonStyles}>{buttontext}</button>
         </Link>
         </>
     )

@@ -3,14 +3,21 @@
     margin: 30px 20px 40px 20px;
 }
 
-.cards {
-    margin: 40px 0px;
-    display: flex;
+
+.cards a{
+    text-decoration: none;
+    color: black;
+    margin: 0 auto;
     width: 100%;
+}
+.cards{
+    margin: 40px auto;
+    display:flex;
+    width: 90%;
     justify-content: center;
 }
 
-.cardDetails {
+.cardDetails{
     width: 70%;
     margin: 0 20px 0 20px;
     display: flex;
@@ -20,6 +27,31 @@
     border: 1px solid #E4E4E4;
     border-radius: 10px;
 }
+.cardDetails a{
+    text-decoration: none;
+    color: black;
+}
+
+.cardDetails img{
+    width:90%;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+.categoryHeading{
+    width: 90%;
+    text-align: left;
+    margin-bottom: 5px;
+}
+.cardDetails p{
+    text-align: left;
+    width: 90%;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: black;
+    margin: 0 auto;
+    width: 100%;
+}
 
 .cardDetails a {
     text-decoration: none;
@@ -28,18 +60,8 @@
     width: 100%;
 }
 
-.cardDetails img {
-    width: 90%;
-    margin-top: 10px;
-    border-radius: 10px;
-}
 
-.categoryHeading {
-    width: 90%;
-    text-align: left;
-    margin-bottom: 5px;
-    height: 50px;
-}
+
 
 .cardDetails p {
     text-align: left;
@@ -68,15 +90,26 @@
 }
 
 @media (max-width: 992px) {
+
+.top-categories{
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 10px;
+}
+
     .cards {
-        flex-direction: column;
+        flex-wrap: wrap;
         align-items: center;
+        
     }
 
     .cardDetails {
-        width: 90%;
+        width: 75%; /* 2 cards per row */
+        margin: 10px auto; /* Adjust margins for spacing */
     }
-
+    .cards a{
+        width: 45%;
+    }
     .cardDetails img {
         width: 80%;
     }
@@ -92,8 +125,11 @@
 
 @media (max-width: 768px) {
     .cardDetails {
-        width: 100%;
-        margin: 20px 0;
+        width: 75%; /* 2 cards per row */
+        margin: 10px auto; /* Adjust margins for spacing */
+    }
+    .cards a{
+        width: 45%;
     }
 
     .cardDetails img {

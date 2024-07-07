@@ -1,0 +1,113 @@
+.about-container{
+    width: 80%;
+    margin: 50px auto;
+    padding: 50px;
+    border: 1px solid rgb(234, 234, 234);
+    border-radius: 20px;
+}
+
+.who ,.how, .team{
+    width: 90%;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.who p,
+.how p{
+    font-size: 15px;
+    line-height: 1.4;
+    color: grey;
+}
+
+.how{
+    margin-top: 150px;
+}
+.team{
+    margin-top: 200px;
+}
+
+.team h2{
+    margin-bottom: 50px;
+}
+
+.team-cards{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.team-card{
+    width: 25%;
+    margin: 0 auto;
+    background-color: rgb(253, 253, 253);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.team-card img{
+    padding: 25px;
+    border-radius: 50%;
+    width: 170px;
+    height: 170px;
+    aspect-ratio: 1;
+}
+
+.team-card hr{
+    width: 90%;
+    margin: 20px auto;
+}
+
+.leader-description{
+    font-size: 14px;
+}
+
+
+@media (max-width: 1120px) {
+    .team-card img{
+        width: 70%;
+        height: 70%;
+    }
+}
+
+@media (max-width: 800px) {
+
+    .team-cards{
+        flex-direction: column;
+    }
+
+    .team-card{
+        width: 80%;
+        margin-top: 100px;
+    }
+
+    .team-card img{
+        width: 60%;
+        height: 60%;
+    }
+
+
+    
+}
+
+@media (max-width: 500px) {
+
+    .team-cards{
+        flex-direction: column;
+    }
+
+    .team-card{
+        width: 100%;
+        margin-top: 100px;
+        padding: 0;
+    }
+
+    .about-container{
+        width: 70%;
+    }
+
+    .team-card img{
+        width: 150px;
+        height: 150px;
+    }
+
+}
