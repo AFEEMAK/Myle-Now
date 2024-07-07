@@ -133,6 +133,7 @@ function CartItems(){
                     <p class="bold">TOTAL</p>
                     <p class="bold">55 CAD</p>
                 </div>
+                <button class="checkoutBtn">CHECKOUT</button>
                 
 
             </section>

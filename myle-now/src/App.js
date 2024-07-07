@@ -7,10 +7,19 @@ import Nopage from './pages/NoPage';
 import Register from './pages/Register';
 import Services from './pages/Services';
 import ServiceDetails from './pages/ServiceDetails';
+<<<<<<< HEAD
 import CheckoutPage from './pages/Checkout';
 import EmailVerify from './pages/EmailVerify';
 import AddService from './pages/AddService';
 import Cart from './pages/Cart';  
+=======
+import EmailVerify from './pages/EmailVerify';
+import AddService from './pages/AddService';
+import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
+import OrderDetailsSP from './pages/OrderDetailsSP';
+import OrderDetailsCS from './pages/OrderDetailsCS';
+>>>>>>> 386700dbaa11ecc06a54573d7d08d48962711a1a
 
 function App() {
   const { user } = useAuthContext();
@@ -28,12 +37,24 @@ function App() {
         <Route path='/login' element={!user ? <Login /> : <Navigate to='/' />} />
         <Route path='*' element={<Nopage />} />
         <Route path='/register' element={!user ? <Register /> : <Navigate to='/' />} />
+<<<<<<< HEAD
         <Route path='/services/:id' element={<Services />} />
         <Route path='/serviceDetails/:id' element={<ServiceDetails />} />
         <Route path='/checkout' element={<CheckoutPage />} />
         <Route path='/admin/add/service' element={role === 'admin' ? <AddService /> : <Navigate to='/' />} />
         <Route path='/users/:id/verify/:token' element={<EmailVerify />} />
         <Route path='/cart' element={<Cart />} />  {}
+=======
+        <Route path='/admin/add/service' element={role === 'admin' ? <AddService /> : <Navigate to='/'/> } />
+        <Route path='/services/:id' element={<Services />} />
+        <Route path='/users/:id/verify/:token' element={<EmailVerify />} />
+        <Route exact path='/serviceDetails/:id' element={<ServiceDetails />} />
+        <Route exact path='/cart' element={<Cart />} />
+        <Route exact path='/ordersCS' element={<OrderDetailsCS />} />
+        <Route exact path='/ordersSP' element={<OrderDetailsSP />} />
+        <Route exact path='/checkout' element={<Checkout />} />
+        
+>>>>>>> 386700dbaa11ecc06a54573d7d08d48962711a1a
       </Routes>
     </>
   );
