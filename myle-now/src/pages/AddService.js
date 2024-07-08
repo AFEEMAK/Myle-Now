@@ -1,8 +1,14 @@
 import React from 'react';
 import '../assets/search.png'
+
+import AddServiceContent from '../components/AddServiceContent';
+
 function AddService(){
     return (
-        <h1>Admin Page Broski</h1>
+        <>
+        
+        <AddServiceContent></AddServiceContent>
+        </>
     )
 }
 
