@@ -38,7 +38,7 @@ function App() {
         <Route path='/services/:id' element={<Services />} />
         <Route path='/serviceDetails/:id' element={<ServiceDetails />} />
         <Route path='/checkout' element={<Checkout />} />
-        <Route path='/admin/add/service' element={role === 'admin' ? <AddService /> : <Navigate to='/' />} />
+        <Route path='/admin/add/service' element= {<AddService />} />
         <Route path='/users/:id/verify/:token' element={<EmailVerify />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/ordersCS' element={<OrderDetailsCS />} />
