@@ -100,6 +100,7 @@
     .cards {
         flex-wrap: wrap;
         align-items: center;
+        width: 100%;
         
     }
 
@@ -152,11 +153,21 @@
     }
 
     .cards {
-        margin: 20px 0;
+        flex-direction: column;
+        width: 100%;
     }
 
     .cardDetails {
         padding: 15px;
+        width: 80%;
+    }
+
+    .cards a{
+        width: 100%;
+    }
+
+    .cardDetails{
+        font-size: 20px;
     }
 
     .cardDetails img {
@@ -164,10 +175,12 @@
     }
 
     .categoryHeading {
-        font-size: 13px;
+        font-size: 18px;
+        text-align: center;
     }
 
     .cardDetails p {
-        font-size: 10px;
+        font-size: 15px;
+        text-align: center;
     }
 }
