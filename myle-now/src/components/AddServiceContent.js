@@ -1,9 +1,7 @@
-import './AddService.css'
-import React, { useState,useEffect } from 'react';
-import massage from '../assets/massage.png'
+import './AddService.css';
+import { useState, useEffect } from 'react';
 
-
-const ServiceForm = ({ service, onSave, onReset }) => {
+const ServiceForm = () => {
   const [serviceName, setServiceName] = useState('');
   const [serviceDescription, setServiceDescription] = useState('');
   const [category, setCategory] = useState('');
@@ -11,20 +9,33 @@ const ServiceForm = ({ service, onSave, onReset }) => {
   const [image, setImage] = useState(null);
   const [price, setPrice] = useState('');
   const [time, setTime] = useState('');
+  const [categories, setCategories] = useState([]);
+  const [subcategories, setSubcategories] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (service) {
-      setServiceName(service.name);
-      setServiceDescription(service.description);
-      setCategory(service.category);
-      setSubcategory(service.subcategory);
-      setImage(service.image);
-      setPrice(service.price);
-      setTime(service.time);
+    const fetchCategories = async () => {
+      const response = await fetch('/api/service/categories');
+      const data = await response.json();
+      setCategories(data);
+    };
+
+    fetchCategories();
+  }, []);
+
+  useEffect(() => {
+    if (category) {
+      const fetchSubcategories = async () => {
+        const response = await fetch(`/api/service/subcategories/${category}`);
+        const data = await response.json();
+        setSubcategories(Array.isArray(data) ? data : []);
+      };
+
+      fetchSubcategories();
     } else {
-      resetForm();
+      setSubcategories([]);
     }
-  }, [service]);
+  }, [category]);
 
   const resetForm = () => {
     setServiceName('');
@@ -36,26 +47,46 @@ const ServiceForm = ({ service, onSave, onReset }) => {
     setTime('');
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const newService = {
-      id: service ? service.id : null,
       name: serviceName,
       description: serviceDescription,
       category,
       subcategory,
-      image,
+      image: image.name,
       price,
       time
     };
-    onSave(newService);
-    resetForm();
-    onReset();
+
+    try {
+      const response = await fetch('/api/service', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newService),
+      });
+
+      const json = await response.json();
+
+      if (response.ok) {
+        
+        resetForm();
+        setError(null); // Reset error state
+        alert('Service added successfully!'); // Placeholder for feedback
+      } else {
+        setError(json.error);
+      }
+    } catch (error) {
+      setError('An error occurred while saving the service.');
+      console.error('Error:', error);
+    }
   };
 
   return (
     <div className="service-form">
-      <h2>{service ? 'Edit Service' : 'Add Service'}</h2>
+      <h2>Add Service</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="service_name">Service Name:</label>
         <input
@@ -81,9 +112,11 @@ const ServiceForm = ({ service, onSave, onReset }) => {
           required
         >
           <option value="">Select a category</option>
-          <option value="category1">Category 1</option>
-          <option value="category2">Category 2</option>
-          <option value="category3">Category 3</option>
+          {categories.map((cat) => (
+            <option key={cat._id} value={cat._id}>
+              {cat.category_name}
+            </option>
+          ))}
         </select>
         <label htmlFor="subcategory">Subcategory:</label>
         <select
@@ -93,9 +126,11 @@ const ServiceForm = ({ service, onSave, onReset }) => {
           required
         >
           <option value="">Select a subcategory</option>
-          <option value="subcategory1">Subcategory 1</option>
-          <option value="subcategory2">Subcategory 2</option>
-          <option value="subcategory3">Subcategory 3</option>
+          {subcategories.map((subcat) => (
+            <option key={subcat._id} value={subcat._id}>
+              {subcat.subcategory_name}
+            </option>
+          ))}
         </select>
         <label htmlFor="image">Upload Image:</label>
         <input
@@ -120,126 +155,72 @@ const ServiceForm = ({ service, onSave, onReset }) => {
           onChange={(e) => setTime(e.target.value)}
           required
         />
-        <input type="submit" value={service ? 'Update' : 'Add'} />
+        <input type="submit" value="Add" />
+        {error && <div className='error'>{error}</div>}
       </form>
     </div>
   );
 };
 
-
-
-
-const ServiceItem = ({ service, onEdit, onDelete }) => {
+const ServiceItem = ({ service }) => {
+  
+  const image = require(`../assets/${service.image}`)
   return (
     <div className="service-item">
-
       <div className='item-contents'>
-
-      
-        <img src={massage} alt={service.name} className="service-image"/>
-      <div>
-
-      <h3>{service.name}</h3>
-      <p>{service.description}</p>
-      <p>Category: {service.category}</p>
-      <p>Subcategory: {service.subcategory}</p>
-      <p>Price: ${service.price}</p>
-      <p>Time: {service.time} minutes</p>
-      </div>
+      <img src={image} alt={service.name} className="service-image"/>
+        <div>
+          <h3>{service.name}</h3>
+          <p>{service.description}</p>
+          <p><span>Category:</span> {service.category}</p>
+          <p><span>Subcategory:</span> {service.subcategory}</p>
+          <p><span>Price:</span> ${service.price}</p>
+          <p><span>Time:</span> {service.time} minutes</p>
+        </div>
       </div>
       <div className='item-buttons'>
 
-      <button onClick={() => onEdit(service)}>Edit</button>
-      <button onClick={() => onDelete(service.id)}>Delete</button>
+        <button >Edit</button>
+        <button>Delete</button>
       </div>
     </div>
   );
 };
 
-
-
-
-
-
-const ServiceList = ({ services, onEdit, onDelete }) => {
+const ServiceList = ({ services }) => {
   return (
     <div className="service-list-container">
       <h2>Service List</h2>
       {services.map(service => (
-        <ServiceItem key={service.id} service={service} onEdit={onEdit} onDelete={onDelete} />
+        <ServiceItem key={service._id} service={service} /> 
       ))}
     </div>
   );
 };
 
+function AddServiceContent() {
+  const [services, setServices] = useState([]);
 
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await fetch('/api/service');
+        const data = await response.json();
+        setServices(data);
+      } catch (error) {
+        console.error('Error fetching services:', error);
+      }
+    };
 
-
-
-
-
-function AddServiceContent(){
-  const [services, setServices] = useState([
-    {
-      id: 1,
-      name: 'Service 1',
-      description: 'Description for service 1',
-      category: 'category1',
-      subcategory: 'subcategory1',
-      image: null,
-      price: 100,
-      time: 60
-    },
-    {
-      id: 2,
-      name: 'Service 2',
-      description: 'Description for service 2',
-      category: 'category2',
-      subcategory: 'subcategory2',
-      image: null,
-      price: 200,
-      time: 120
-    }
-  ]);
-
-  const [isEditing, setIsEditing] = useState(false);
-  const [currentService, setCurrentService] = useState(null);
-
-  const addService = (service) => {
-    setServices([...services, { ...service, id: services.length + 1 }]);
-  };
-
-  const editService = (updatedService) => {
-    setServices(services.map(service => (service.id === updatedService.id ? updatedService : service)));
-    setIsEditing(false);
-    setCurrentService(null);
-  };
-
-  const deleteService = (id) => {
-    setServices(services.filter(service => service.id !== id));
-  };
-
-  const startEdit = (service) => {
-    setIsEditing(true);
-    setCurrentService(service);
-  };
-
-  const resetForm = () => {
-    setIsEditing(false);
-    setCurrentService(null);
-  };
+    fetchServices();
+  }, []);
 
   return (
     <div className="service-page-container">
-      {isEditing ? (
-        <ServiceForm service={currentService} onSave={editService} onReset={resetForm} />
-      ) : (
-        <ServiceForm onSave={addService} onReset={resetForm} />
-      )}
-      <ServiceList services={services} onEdit={startEdit} onDelete={deleteService} />
+      <ServiceForm />
+      <ServiceList services={services} />
     </div>
   );
 }
-
 
 export default AddServiceContent;

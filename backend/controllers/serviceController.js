@@ -1,4 +1,6 @@
 const SubCategories = require('../models/subCategoryModel');
+const Category = require('../models/categoryModel');
+const Service = require('../models/serviceModel');
 const mongoose = require('mongoose');
 
 const getSubCategories = async (req, res) => {
@@ -17,6 +19,67 @@ const getSubCategories = async (req, res) => {
   res.status(200).json(subcategories);
 };
 
-module.exports = {
-  getSubCategories
+
+
+// In your categories controller
+const getCategories = async (req, res) => {
+  try {
+    const categories = await Category.find({});
+    res.status(200).json(categories);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch categories' });
+  }
 };
+const getServices = async (req, res) => {
+  try {
+    const categories = await Service.find({});
+    res.status(200).json(categories);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch categories' });
+  }
+};
+
+
+
+
+
+
+// create new service
+const createService = async (req, res) => {
+  const { name, description, category, subcategory, image, price, time } = req.body;
+
+  let emptyFields = [];
+
+  if (!name) {
+    emptyFields.push('name');
+  }
+  if (!description) {
+    emptyFields.push('description');
+  }
+  if (!category) {
+    emptyFields.push('category');
+  }
+  if (!subcategory) {
+    emptyFields.push('subcategory');
+  }
+  if (!price) {
+    emptyFields.push('price');
+  }
+  if (!time) {
+    emptyFields.push('time');
+  }
+  if (emptyFields.length > 0) {
+    return res.status(400).json({ error: 'Please fill in all the fields', emptyFields });
+  }
+
+  // add doc to db
+  try {
+    const service = await Service.create({ name, description, category, subcategory, image, price, time });
+    res.status(200).json(service);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+
+module.exports = { getCategories, getSubCategories, getServices,createService };

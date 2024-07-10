@@ -83,6 +83,17 @@ margin-right: auto;
     margin: 0;
   }
   
+  .item-contents p{
+    margin: 10px 5px;
+   color: #333;
+   font-size: 13px;
+   
+  }
+
+  .item-contents p span{
+    font-weight: 700;
+  }
+
   .item-buttons button {
     background-color: #181818;
     color: white;
@@ -109,7 +120,12 @@ margin-right: auto;
   }
 
 
-  @media (max-width: 500px){
+
+  .item-buttons{
+    display: flex;
+  }
+
+  @media (max-width: 650px){
     .item-contents{
         flex-direction: column;
         text-align: center;
