@@ -1,57 +1,53 @@
 import './HomeHeader.css';
-import massage from'../assets/massage.png';
+import massage from '../assets/massage.png';
 import main from '../assets/main.jpg';
 
 import Suggestion from './Suggestion';
+import { useEffect, useState } from 'react';
 
 function HomeHeader() {
+  const [categories, setCategories] = useState([]);
 
-   
-    return (
-        <>
-    
-      <div className='header'>
- 
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const response = await fetch('/api/home');
+      const json = await response.json();
+
+      if (response.ok) {
+        setCategories(json);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  const suggestionItems = categories.map((category) => ({
+    itemstyle: 'grid-item',
+    image: massage,
+    text: category.category_name,
+    key: category._id,
+    linkstyle: 'outer-link', // You can adjust this as needed
+  }));
+
+  return (
+    <>
+      <div className="header">
         <section className="suggestions">
-            <div>
-                <h1>QUALITY SERVICES AT YOUR DOORSTEP!</h1>
-            </div>
-
-                    
-            <div className='suggestionsContainer'>
-
-         
-
-            <Suggestion 
-                children={[
-                    { itemstyle: 'grid-item', image: massage, text: 'Haircut and Beard styling', id:'1'},
-                    { itemstyle: 'grid-item', image: massage, text: 'Haircut and Beard styling', id:'2'},
-                    { itemstyle: 'grid-item', image: massage, text: 'Haircut and Beard styling', id:'3'},
-                    { itemstyle: 'grid-item', image: massage, text: 'Haircut and Beard styling', id:'4'},
-                    { itemstyle: 'grid-item', image: massage, text: 'Haircut and Beard styling', id:'5'},
-                    { itemstyle: 'grid-item', image: massage, text: 'Haircut and Beard styling', id:'6'}
-                ]}
-                    layoutstyle='suggestionGrid' 
-    />
-
-</div>
-
-     
-      
-            
+          <div>
+            <h1>QUALITY SERVICES AT YOUR DOORSTEP!</h1>
+          </div>
+          <div className="suggestionsContainer">
+            <Suggestion children={suggestionItems} layoutstyle="suggestionGrid" />
+          </div>
         </section>
-        <section className='headerTransition'>
-            
-            
-            <div className='transitions'>
-                <img src= {main} alt=''></img>  
-            </div>
-            
+        <section className="headerTransition">
+          <div className="transitions">
+            <img src={main} alt="" />
+          </div>
         </section>
-
       </div>
-      </>
-    );
-  }
+    </>
+  );
+}
 
-  export default HomeHeader;
+export default HomeHeader;

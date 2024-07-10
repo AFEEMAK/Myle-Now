@@ -41,6 +41,7 @@
     width: 90%;
     text-align: left;
     margin-bottom: 5px;
+    height: 40px;
 }
 .cardDetails p{
     text-align: left;
@@ -177,6 +178,7 @@
     .categoryHeading {
         font-size: 18px;
         text-align: center;
+
     }
 
     .cardDetails p {
