@@ -22,6 +22,7 @@ app.use((req, res, next) => {
 
 app.use('/api/user', userRoutes)
 app.use('/api/home', homeRoutes); 
+app.use('/api/home/four-categories', homeRoutes); 
 app.use('/api/service', serviceRoutes); 
 
 // connect to db

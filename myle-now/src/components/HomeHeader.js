@@ -26,7 +26,7 @@ function HomeHeader() {
     image: massage,
     text: category.category_name,
     key: category._id,
-    linkstyle: 'outer-link', // You can adjust this as needed
+    linkstyle: 'outer-link', 
   }));
 
   return (

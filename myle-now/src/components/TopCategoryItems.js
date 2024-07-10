@@ -6,17 +6,16 @@ import { Link } from 'react-router-dom';
 
 function TopCategoriesItem({children}){
 
-
 return(
     
             <div className='cards'>
                 {children.map((child) => (
                     
-                    <Link to={`/Services/${child.id}`}>
+                    <Link to={`/Services/${child.key}`}>
 
                     <CategoryCard
                     image = {child.image}
-                    name = {child.name}
+                    name = {child.text}
                     desc = {child.desc}
                     reviews = {child.reviews}
                     />

@@ -6,6 +6,10 @@ const getCategory = async (req, res) => {
   const categories = await Categories.find({}).sort().limit(6);
   res.status(200).json(categories)
 }
+const getFourCategory = async (req, res) => {
+  const fourcategories = await Categories.find({}).sort().limit(4);
+  res.status(200).json(fourcategories)
+}
 
 // get a single workout
 // const getWorkout = async (req, res) => {
@@ -91,7 +95,8 @@ const getCategory = async (req, res) => {
 
 
 module.exports = {
-  getCategory
+  getCategory,
+  getFourCategory
   // getWorkout,
   // createWorkout,
   // deleteWorkout,

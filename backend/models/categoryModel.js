@@ -8,7 +8,11 @@ const CategorySchema = new Schema({
     required: true
   },
   category_image: {
-    type: Number,
+    type: String,
+    required: true
+  },
+  category_desc: {
+    type: String,
     required: true
   }
 })
