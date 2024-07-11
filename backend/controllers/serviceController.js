@@ -40,7 +40,24 @@ const getServices = async (req, res) => {
 };
 
 
+const getServicesById = async (req, res) => {
 
+  const { id } = req.params;
+    console.log(id)
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({error: 'No such category'});
+  }
+
+  const service = await Service.find({ category: id });
+
+  if (!service.length) {
+    return res.status(404).json({error: 'No service found for this category'});
+  }
+  console.log(service)
+  res.status(200).json(service);
+
+
+};
 
 
 
@@ -82,4 +99,8 @@ const createService = async (req, res) => {
 };
 
 
-module.exports = { getCategories, getSubCategories, getServices,createService };
+
+
+
+
+module.exports = { getCategories, getSubCategories, getServices,createService,getServicesById };

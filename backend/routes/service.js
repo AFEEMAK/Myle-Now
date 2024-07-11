@@ -1,5 +1,5 @@
 const express = require('express');
-const { getSubCategories, createService,getServices } = require('../controllers/serviceController');
+const { getSubCategories, createService,getServices, getServicesById } = require('../controllers/serviceController');
 const { getCategories } = require('../controllers/serviceController');
 
 
@@ -9,6 +9,7 @@ const router = express.Router();
 router.get('/subcategories/:id', getSubCategories);
 router.get('/categories', getCategories);
 router.get('/',getServices)
+router.get('/category/:id',getServicesById)
 
 
 

@@ -7,7 +7,29 @@ import { useParams } from 'react-router-dom';
 import main from '../assets/main.jpg';
 import ProductCard from './ProductCard';
 
-function ServiceContent() {
+function ServiceContent({ subcategories }) {
+  const { id } = useParams();
+  const [services, setServices] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await fetch(`/api/service/category/${id}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch services');
+        }
+        const data = await response.json();
+        setServices(Array.isArray(data) ? data : []);
+      } catch (error) {
+        setError('Error fetching services');
+        console.error('Error fetching services:', error);
+      }
+    };
+
+    fetchServices();
+  }, [id]);
+
   return (
     <div className='service-content'>
       <section className='headerTransition'>
@@ -15,13 +37,23 @@ function ServiceContent() {
           <img src={main} alt='' />
         </div>
       </section>
-      <ProductCard id='1' />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
+      {error && <p>{error}</p>}
+      {subcategories.map(subcategory => (
+        <div key={subcategory._id} id={subcategory._id} className="subcategory-section">
+          <h2 className='subcategory-heading'>{subcategory.subcategory_name}</h2>
+          {services
+            .filter(service => service.subcategory === subcategory._id)
+            .map(service => (
+              <ProductCard key={service._id} service={service} />
+          ))}
+        </div>
+      ))}
     </div>
   );
 }
+
+
+
 
 function ServiceHeader() {
   const { id } = useParams();
@@ -49,9 +81,27 @@ function ServiceHeader() {
     itemstyle: 'list-item',
     image: massage,
     text: subcategory.subcategory_name,
-    id: subcategory._id,
+    key: subcategory._id,
     linkstyle: 'inner-link', // Adjust this as needed
   }));
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const { hash } = window.location;
+      if (hash) {
+        const element = document.getElementById(hash.substring(1));
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
 
   return (
     <>
@@ -66,10 +116,11 @@ function ServiceHeader() {
             </div>
           </div>
         </section>
-        <ServiceContent />
+        <ServiceContent subcategories={subcategories} />
       </div>
     </>
   );
 }
+
 
 export default ServiceHeader;
