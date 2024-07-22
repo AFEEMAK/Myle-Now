@@ -1,0 +1,20 @@
+.admin-nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid black;
+    width: 100%;
+}
+
+.admin-nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    list-style: none;
+}
+
+.admin-nav ul li a{
+    text-decoration: none;
+    margin:20px;
+    color: black;
+}

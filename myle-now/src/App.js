@@ -14,6 +14,7 @@ import Cart from './pages/Cart';
 import OrderDetailsCS from './pages/OrderDetailsCS';
 import OrderDetailsSP from './pages/OrderDetailsSP';
 import AboutUs from './components/AboutUs';
+import DetailForm from './pages/DetailForm';
 
 
 
@@ -43,6 +44,7 @@ function App() {
         <Route path='/ordersSP' element={<OrderDetailsSP />} />
         <Route path='/create-account' element={<CreateAccount />} /> 
         <Route path='/about' element={<AboutUs/>}/>
+        <Route path='/admin/add/content' element={<DetailForm/>} />
       </Routes>
     </>
   );
