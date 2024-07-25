@@ -91,6 +91,7 @@ function Nav() {
     role = user.role; // Assuming user.role is a string like 'admin'
     console.log("Role:", role);
   }
+  console.log("User", user);
   const { logout } = useLogout();
   const handleClick = () => {
     logout();
@@ -115,8 +116,8 @@ function Nav() {
           </Link>
         )}
       </div>
-      {!user && <LinkButton buttontext="Login"></LinkButton>}
-      {user && <LinkButton buttontext="Logout" btnfuntion={handleClick} />}
+      {!user?._id && <LinkButton buttontext="Login"></LinkButton>}
+      {user?._id && <LinkButton buttontext="Logout" btnfuntion={handleClick} />}
 
       <img
         src={hamburger}
