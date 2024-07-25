@@ -8,12 +8,14 @@ const {
   loginUser,
   signupUser,
   getMe,
+  logout,
 } = require("../controllers/userController");
 const requireAuth = require("../middleware/requireAuth");
 
 router.post("/login", loginUser);
 router.post("/signup", signupUser);
-router.get("/", requireAuth, getMe);
+router.get("/me", requireAuth, getMe);
+router.get("/logout", logout);
 
 router.get("/users/:id/verify/:token", async (req, res) => {
   try {
