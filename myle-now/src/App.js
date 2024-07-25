@@ -21,7 +21,7 @@ import PaymentSuccessPage from "./components/PaymentSuccessPage";
 function App() {
   const { user } = useAuthContext();
   let role = null;
-  if (user) {
+  if (user?._id) {
     role = user.role;
     console.log(role);
   }
@@ -33,12 +33,12 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route
           path="/login"
-          element={!user ? <Login /> : <Navigate to="/" />}
+          element={!user?._id ? <Login /> : <Navigate to="/" />}
         />
         <Route path="*" element={<Nopage />} />
         <Route
           path="/register"
-          element={!user ? <Register /> : <Navigate to="/" />}
+          element={!user?._id ? <Register /> : <Navigate to="/" />}
         />
         <Route path="/services/:id" element={<Services />} />
         <Route path="/serviceDetails/:id" element={<ServiceDetails />} />
