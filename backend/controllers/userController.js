@@ -37,13 +37,12 @@ const loginUser = async (req, res) => {
       maxAge: 3 * 24 * 60 * 60 * 1000,
     });
 
-    res.status(200).json({ email, token, role });
+    res.status(200).json({ email, token, role, _id: user._id });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-// Signup a user
 const signupUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -62,13 +61,20 @@ const getMe = async (req, res) => {
     return;
   }
 
+  console.log("REq.iser", req.user);
   try {
-    const user = await User.signup(email, password);
-    const token = createToken(user._id);
-    res.status(200).json({ error: "Verification email has been sent" });
+    res.status(200).json(req.user);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-module.exports = { signupUser, loginUser, getMe };
+const logout = async (req, res) => {
+  try {
+    res.cookie("auth-token", null).status(200).json("OK!");
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+module.exports = { signupUser, loginUser, getMe, logout };
