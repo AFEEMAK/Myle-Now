@@ -18,12 +18,27 @@ export const AuthContextProvider = ({ children }) => {
     user: null,
   });
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-
-    if (user) {
-      dispatch({ type: "LOGIN", payload: user });
+  const getUser = async () => {
+    try {
+      const data = await fetch("/api/user/me", {
+        method: "GET",
+      });
+      const json = await data.json();
+      console.log("Data", json);
+      if (json) {
+        dispatch({ type: "LOGIN", payload: json });
+      }
+    } catch (error) {
+      console.log("Error fetching data", error);
     }
+  };
+  useEffect(() => {
+    getUser();
+    // const user = JSON.parse(localStorage.getItem("user"));
+
+    // if (user) {
+    //   dispatch({ type: "LOGIN", payload: user });
+    // }
   }, []);
 
   console.log("AuthContext state:", state);
