@@ -9,23 +9,40 @@ import '../components/ServiceDetailSection.css';
 
 
 function ServiceDetailSection({ serviceDetails }) {
-    const imagePath = require(`../assets/${serviceDetails.image}`);
-    return (
-        <div className='details-topsection'>
-            <div className="details">
-                <h2>{serviceDetails.service_id.name}</h2>
-                <p className='desc'>{serviceDetails.long_description}</p>
-                <div>
-                    <p>CAD {serviceDetails.service_id.price}</p>
-                    <button>Add</button>
-                </div>
-            </div>
-            <div className="image">
-            
-                <img src={imagePath} alt={serviceDetails.service_id.name}></img>
-            </div>
+  const { _id } = serviceDetails?.service_id;
+  const { addToCart, isLoading, error } = useCart();
+
+  const handleAddToCart = async (id) => {
+    try {
+      await addToCart(id);
+      toast.success("Added to cart!");
+    } catch (err) {
+      toast.error(error);
+    }
+  };
+
+  const imagePath = require(`../assets/${serviceDetails.image}`);
+  return (
+    <div className="details-topsection">
+      <div className="details">
+        <h2>{serviceDetails.service_id.name}</h2>
+        <p className="desc">{serviceDetails.long_description}</p>
+        <div>
+          <p>CAD {serviceDetails.service_id.price}</p>
+          <button
+            style={{ cursor: "pointer" }}
+            onClick={() => handleAddToCart(_id)}
+            disabled={isLoading}
+          >
+            {isLoading ? "loading..." : "ADD"}
+          </button>{" "}
         </div>
-    );
+      </div>
+      <div className="image">
+        <img src={imagePath} alt={serviceDetails.service_id.name}></img>
+      </div>
+    </div>
+  );
 }
 
 function DetialsInsListItem({ number, text, desc }) {
