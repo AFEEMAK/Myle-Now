@@ -3,8 +3,11 @@ import { useParams } from "react-router-dom";
 
 import ServiceColoredSection from "../components/ServiceColoredSection";
 
-import '../components/DetailsInsList.css';
-import '../components/ServiceDetailSection.css';
+import "../components/DetailsInsList.css";
+import "../components/ServiceDetailSection.css";
+import { useCart } from "../hooks/useCart";
+import { toast } from "react-toastify";
+
 
 
 
