@@ -1,148 +1,163 @@
-import trash from '../assets/trash.png';
-import massage from'../assets/massage.png';
-import './CartItems.css'
+import trash from "../assets/trash.png";
+import massage from "../assets/massage.png";
+import "./CartItems.css";
+import { useCart } from "../hooks/useCart";
+import { useEffect, useState } from "react";
+import { useOrder } from "../hooks/useOrder";
+import { Link } from "react-router-dom";
 
-function CartItems(){
-    return(
-        <>
-        <div class= "cartContainer">
-        <h1 class="cartHeading">Your Cart</h1>
-        <div class="cartItemsList">
-            <section class="try">
-            <div class="cartItems">
-                <div class="imgSec">
-                    <img src={massage} alt=""></img>
-                </div>
+function CartItems() {
+  const [fetchedCart, setFetchedCart] = useState([]);
+  const {
+    isLoading,
+    fetchCart,
+    removeFromCart,
+    updateCartItemQuantity,
+    error,
+  } = useCart();
 
-                <div class="infoSec">
-                   
-                    <div class="info1">
-                        <div class="info1Text">
-                            <h3 class="cardItemName">Haircut For Men</h3>
-                             <p>Proffessional haircut that suits Your face.</p>
-                        </div>
-                        <div class="info1Img">
-                            <img src={trash} alt=''></img>
-                        </div>
-                    </div>
+  const getCart = async () => {
+    try {
+      const data = await fetchCart();
+      if (data) {
+        setFetchedCart(data);
+      }
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
 
-                    <hr></hr>
+  useEffect(() => {
+    getCart();
+  }, []);
 
-                    <div class="info2">
-                        <div class="quantity">
-                            <button>-</button>
-                            <p>1</p>
-                            <button>+</button>
-                        </div>
-                        <div class="price">
-                            <p class="priceText">50.00 CAD</p>
-                        </div>
-                    </div>
-                    
-                </div>
-               
-</div>
-                
-<div class="cartItems">
-                <div class="imgSec">
-                    <img src={massage} alt=""></img>
-                </div>
-
-                <div class="infoSec">
-                   
-                    <div class="info1">
-                        <div class="info1Text">
-                            <h3 class="cardItemName">Haircut For Men</h3>
-                             <p>Proffessional haircut that suits Your face.</p>
-                        </div>
-                        <div class="info1Img">
-                            <img src={trash} alt=''></img>
-                        </div>
-                    </div>
-
-                    <hr></hr>
-
-                    <div class="info2">
-                        <div class="quantity">
-                            <button>-</button>
-                            <p>1</p>
-                            <button>+</button>
-                        </div>
-                        <div class="price">
-                            <p class="priceText">50.00 CAD</p>
-                        </div>
-                    </div>
-                    
-                </div>
-               
-</div>
-<div class="cartItems">
-                <div class="imgSec">
-                    <img src={massage} alt=""></img>
-                </div>
-
-                <div class="infoSec">
-                   
-                    <div class="info1">
-                        <div class="info1Text">
-                            <h3 class="cardItemName">Haircut For Men</h3>
-                             <p>Proffessional haircut that suits Your face.</p>
-                        </div>
-                        <div class="info1Img">
-                            <img src={trash} alt=''></img>
-                        </div>
-                    </div>
-
-                    <hr></hr>
-
-                    <div class="info2">
-                        <div class="quantity">
-                            <button>-</button>
-                            <p>1</p>
-                            <button>+</button>
-                        </div>
-                        <div class="price">
-                            <p class="priceText">50.00 CAD</p>
-                        </div>
-                    </div>
-                    
-                </div>
-               
-</div>
-                
-            </section>
-
-            <section class="cartSummary">
-                <h2 class="cartSummaryHeading">SUMMARY</h2>
-                <div class="subtotal">
-                    <p class="p1">Subtotal (1 Items)</p>
-                    <p class="p2">50 CAD</p>
-                </div>
-                <div class="subtotal">
-                    <p class="p1">Shipping and Handling</p>
-                    <p class="p2">5 CAD</p>
-                </div>
-                <div class="subtotal">
-                    <p class="p1">Tax (Calculated At Checkout)</p>
-                    <p class="p2">0 CAD</p>
-                </div>
-                
-                <hr></hr>
-
-                <div class="subtotal">
-                    <p class="bold">TOTAL</p>
-                    <p class="bold">55 CAD</p>
-                </div>
-                <button class="checkoutBtn">CHECKOUT</button>
-                
-
-            </section>
-
-        </div>
-       
-        </div>
-        </>
+  const handleRemoveFromCart = async (serviceId) => {
+    await removeFromCart(serviceId);
+    setFetchedCart((prevCart) =>
+      prevCart.filter((item) => item.serviceId._id !== serviceId)
     );
+  };
+
+  const handleUpdateCartItemQuantity = async (serviceId, quantity) => {
+    await updateCartItemQuantity(serviceId, quantity);
+    setFetchedCart((prevCart) =>
+      prevCart.map((item) =>
+        item.serviceId._id === serviceId ? { ...item, quantity } : item
+      )
+    );
+  };
+
+  return (
+    <>
+      <div className="cartContainer">
+        <h1 className="cartHeading">Your Cart</h1>
+        <div className="cartItemsList">
+          <section className="try">
+            {isLoading ? (
+              <p>Loading...</p>
+            ) : (
+              fetchedCart.map((item, index) => (
+                <div className="cartItems" key={index}>
+                  <div className="imgSec">
+                    <img src={massage} alt="" />
+                  </div>
+
+                  <div className="infoSec">
+                    <div className="info1">
+                      <div className="info1Text">
+                        <h3 className="cardItemName">{item?.serviceId.name}</h3>
+                        <p>{item?.serviceId.description}</p>
+                      </div>
+                      <div
+                        onClick={() => handleRemoveFromCart(item.serviceId._id)}
+                        className="info1Img"
+                      >
+                        <img src={trash} alt="" />
+                      </div>
+                    </div>
+
+                    <hr />
+
+                    <div className="info2">
+                      <div className="quantity">
+                        <button
+                          onClick={() =>
+                            handleUpdateCartItemQuantity(
+                              item.serviceId._id,
+                              item.quantity - 1
+                            )
+                          }
+                          disabled={isLoading || item.quantity <= 1}
+                        >
+                          -
+                        </button>
+                        <p>{item.quantity}</p>
+                        <button
+                          disabled={isLoading}
+                          onClick={() =>
+                            handleUpdateCartItemQuantity(
+                              item.serviceId._id,
+                              item.quantity + 1
+                            )
+                          }
+                        >
+                          +
+                        </button>
+                      </div>
+                      <div className="price">
+                        <p className="priceText">{item?.serviceId.price} CAD</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
+          </section>
+
+          <section className="cartSummary">
+            <h2>SUMMARY</h2>
+
+            {fetchedCart?.map((item, index) => (
+              <div className="subtotal" key={index}>
+                <p className="p1">{item?.serviceId.name}</p>
+                <p className="p1">{item?.quantity}</p>
+                <p className="p2">{item?.serviceId.price} CAD</p>
+              </div>
+            ))}
+            <div className="subtotal">
+              <p className="p1">Shipping and Handling</p>
+              <p className="p2">5 CAD</p>
+            </div>
+            <div className="subtotal">
+              <p className="p1">Tax (Calculated At Checkout)</p>
+              <p className="p2">---</p>
+            </div>
+            <hr />
+            <div className="subtotal">
+              <p className="bold">Total</p>
+              <p className="bold">
+                {fetchedCart.reduce(
+                  (total, item) =>
+                    total + item?.serviceId.price * item.quantity,
+                  5
+                )}{" "}
+                CAD
+              </p>
+            </div>
+            <Link to={"/checkout"}>
+              <button
+                style={{ width: "100%" }}
+                disabled={isLoading}
+                className="checkoutBtn"
+              >
+                checkout
+              </button>
+            </Link>
+          </section>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default CartItems;
