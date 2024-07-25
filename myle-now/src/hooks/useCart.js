@@ -41,12 +41,14 @@ export const useCart = () => {
       const json = await response.json();
 
       if (!response.ok) {
-        setError(json.error);
+        setError(json.error.statusText);
+        throw new Error(response.statusText);
       } else {
         setCart(json);
       }
     } catch (err) {
       setError(err.message);
+      throw new Error(err);
     } finally {
       setIsLoading(false);
     }
