@@ -12,6 +12,16 @@ const ButtonStyles = {
 
 export default function LinkButton({buttontext, btnfuntion, btnlink}){
    
+    if(btnlink){
+
+    return(
+
+        <Link to={btnlink}>
+
+    <button className="nav-button" style={ButtonStyles}>{buttontext}</button>
+    </Link>
+    )
+   }
    if(btnfuntion){
 
        return(
@@ -23,7 +33,8 @@ export default function LinkButton({buttontext, btnfuntion, btnlink}){
            </Link>
            </>
        )
-   }else{
+   }
+   else{
     return(
         <>
         <Link to='/Login'>

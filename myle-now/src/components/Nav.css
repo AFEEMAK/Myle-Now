@@ -6,6 +6,7 @@ nav {
   box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
 }
 
+
 .hamburger-icon{
   display: none;
 }
@@ -40,6 +41,15 @@ nav .search-boxes input {
 nav a {
   text-decoration: none;
   color: black;
+}
+
+.right{
+  display: flex;
+  align-items: center;
+}
+.cartIcon img{
+   padding:10px;
+   margin-right: 20px;
 }
 
 @keyframes typewriter {
@@ -138,6 +148,9 @@ nav a {
   nav {
       padding: 0px 20px;
       
+  }
+  .cartIcon{
+    display: none;
   }
 
   .admin-links{

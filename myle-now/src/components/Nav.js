@@ -7,6 +7,7 @@ import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
 import search from "../assets/search.png";
 import hamburger from "../assets/hamburger.png";
+import cart from "../assets/shopping-cart.png";
 
 const AnimatedInput = ({ placeholders = [""], ...passedProps }) => {
   const [currentPlaceholder, setCurrentPlaceholder] = useState("");
@@ -122,7 +123,9 @@ function Nav() {
         <input type="text" className="location"></input>
 
         <AnimatedInput placeholders={placeholders} />
+        
       </div>
+      
       <div>
         {role === "admin" && (
           <Link className="admin-links" to="/admin/add/service">
@@ -130,9 +133,13 @@ function Nav() {
           </Link>
         )}
       </div>
+      <div className="right">
+        <Link className="cartIcon" to="/cart">
+            <img src={cart} alt=""/>
+        </Link>
       {!user?._id && <LinkButton buttontext="Login"></LinkButton>}
       {user?._id && <LinkButton buttontext="Logout" btnfuntion={handleClick} />}
-
+      </div>
       <img
         src={hamburger}
         alt="menu"
@@ -143,7 +150,9 @@ function Nav() {
         <div className="search-boxes">
           <input type="text" className="location" />
           <AnimatedInput placeholders={placeholders} />
+          
         </div>
+        <LinkButton btnlink={'/cart'} buttontext="Cart" ></LinkButton>
 
         {!user && <LinkButton buttontext="Login"></LinkButton>}
         {user && <LinkButton buttontext="Logout" btnfuntion={handleClick} />}
