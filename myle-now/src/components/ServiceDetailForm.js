@@ -122,7 +122,8 @@ const ServiceDetailsForm = () => {
   };
 
   return (
-    <div className="service-details-form">
+    <div className="service-page-container">
+    <div className="service-form">
       <h2>Add Service Details</h2>
       <form onSubmit={handleSubmitDetails}>
         <label htmlFor="category">Category:</label>
@@ -206,12 +207,13 @@ const ServiceDetailsForm = () => {
             />
           </div>
         ))}
-        <button type="button" onClick={handleAddStep}>Add Step</button>
+        <button type="button" className='add-step' onClick={handleAddStep}>Add Step</button>
 
         <input type="submit" value="Add Service Details" />
         {error && <div className='error'>{error}</div>}
       </form>
     </div>
+   </div>
   );
 };
 

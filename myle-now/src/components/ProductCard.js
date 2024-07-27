@@ -34,7 +34,7 @@ function ProductCard({ service }) {
         <div className="product-details">
           <p className="product-name">{name}</p>
           <p className="product-desc">{description}</p>
-          <p className="review-details">4.8 (50k Reviews)</p>
+          <p className="review-details">&#9733; 4.8 (50k Reviews)</p>
           <hr />
           <div className="time-info">
             <p>

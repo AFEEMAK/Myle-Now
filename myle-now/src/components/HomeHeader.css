@@ -34,7 +34,7 @@ h3 {
 
 .suggestionGrid {
     display: grid;
-    grid-auto-columns: auto;
+    grid-auto-columns: 1fr;
     grid-gap: 20px;
     padding: 15px 20px;
 }
@@ -213,6 +213,10 @@ h3 {
         width: 100%;
         margin: 20px 10px 10px 10px;
     }
+}
+.suggestionItemImage{
+    width:50%;
+
 }
 
 @media (max-width: 576px) {

@@ -1,5 +1,5 @@
 import './TopCategories.css';
-import massage from'../assets/massage.png';
+
 import TopCategoryItems from './TopCategoryItems';
 import { useEffect, useState } from 'react';
 function TopCategories(){
@@ -20,9 +20,9 @@ function TopCategories(){
       }, []);
     
       const topCategoryItems = categories.map((category) => (
-        console.log(category),
+        
         {
-        image: massage,
+        image: category.category_image,
         text: category.category_name,
         key: category._id,
         desc: category.category_desc,

@@ -172,6 +172,21 @@ const getServiceDetailsByServiceId = async (req, res) => {
 };
 
 
+const searchServices = async (req, res) => {
+  const { query } = req.query;
+  try {
+    const services = await Service.find({
+      $or: [
+        { name: { $regex: query, $options: "i" } },
+        { description: { $regex: query, $options: "i" } }
+      ]
+    });
+    res.status(200).json(services);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch services' });
+  }
+}; /*code added*/
 
 
-module.exports = {getServiceDetailsByServiceId , getCategories, getSubCategories, getServices,createService,getServicesById, createServiceDetails, getServicesByCategoryAndSubcategory};
+
+module.exports = {getServiceDetailsByServiceId , getCategories, getSubCategories, getServices,createService,getServicesById, createServiceDetails, getServicesByCategoryAndSubcategory,  searchServices};

@@ -12,7 +12,7 @@ const SubCategorySchema = new Schema({
     required: true
   },
   subcategory_image: {
-    type: Number,
+    type: String,
     required: true
   }
 })

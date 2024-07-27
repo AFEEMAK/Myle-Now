@@ -75,11 +75,13 @@ function ServiceHeader() {
     };
 
     fetchSubcategories();
+    
   }, [id]);
 
+console.log("this is subcategory",subcategories)
   const suggestionItems = subcategories.map((subcategory) => ({
     itemstyle: 'list-item',
-    image: massage,
+    image: subcategory.subcategory_image,
     text: subcategory.subcategory_name,
     key: subcategory._id,
     linkstyle: 'inner-link', // Adjust this as needed

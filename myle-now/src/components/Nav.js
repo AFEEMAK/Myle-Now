@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LinkButton from "./LinkButton";
+
 import "./Nav.css";
 import React, { useState, useEffect } from "react";
 import { useLogout } from "../hooks/useLogout";
@@ -12,6 +13,8 @@ const AnimatedInput = ({ placeholders = [""], ...passedProps }) => {
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
   const [isFocused, setIsFocused] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  const [query, setQuery] = useState(""); // *code added*
+  const navigate = useNavigate(); // *code added*
 
   useEffect(() => {
     let timeout;
@@ -54,7 +57,17 @@ const AnimatedInput = ({ placeholders = [""], ...passedProps }) => {
 
   const handleInput = (event) => {
     setIsTyping(event.target.value.length > 0);
+    setQuery(event.target.value); // *code added*
+    
   };
+  const handleSearch = (event) => {
+    if (event.key === "Enter") {
+      event.target.value = "";
+      navigate(`/searchResults?query=${query}`); // *code added*
+      
+    }
+  };
+
 
   return (
     <div className="animated-placeholder-container">
@@ -65,6 +78,7 @@ const AnimatedInput = ({ placeholders = [""], ...passedProps }) => {
         onFocus={handleFocus}
         onBlur={handleBlur}
         onInput={handleInput}
+        onKeyDown={handleSearch} // *code added*
       />
       {!isFocused && !isTyping && (
         <div className="placeholder-wrapper">

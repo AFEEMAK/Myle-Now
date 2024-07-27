@@ -1,5 +1,5 @@
 import './HomeHeader.css';
-import massage from '../assets/massage.png';
+
 import main from '../assets/main.jpg';
 
 import Suggestion from './Suggestion';
@@ -23,7 +23,7 @@ function HomeHeader() {
 
   const suggestionItems = categories.map((category) => ({
     itemstyle: 'grid-item',
-    image: massage,
+    image: category.category_image,
     text: category.category_name,
     key: category._id,
     linkstyle: 'outer-link', 
