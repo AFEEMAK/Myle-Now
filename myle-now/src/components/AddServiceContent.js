@@ -1,7 +1,7 @@
 import './AddService.css';
 import { useState, useEffect } from 'react';
 
-const ServiceForm = () => {
+const ServiceForm = ({ onSubmit, serviceToEdit, onCancelEdit }) => {
   const [serviceName, setServiceName] = useState('');
   const [serviceDescription, setServiceDescription] = useState('');
   const [category, setCategory] = useState('');
@@ -37,6 +37,18 @@ const ServiceForm = () => {
     }
   }, [category]);
 
+  useEffect(() => {
+    if (serviceToEdit) {
+      setServiceName(serviceToEdit.name);
+      setServiceDescription(serviceToEdit.description);
+      setCategory(serviceToEdit.category);
+      setSubcategory(serviceToEdit.subcategory);
+      setImage(serviceToEdit.image);
+      setPrice(serviceToEdit.price);
+      setTime(serviceToEdit.time);
+    }
+  }, [serviceToEdit]);
+
   const resetForm = () => {
     setServiceName('');
     setServiceDescription('');
@@ -54,30 +66,16 @@ const ServiceForm = () => {
       description: serviceDescription,
       category,
       subcategory,
-      image: image.name,
+      image: image ? image.name : serviceToEdit?.image,
       price,
       time
     };
 
     try {
-      const response = await fetch('/api/service', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newService),
-      });
-
-      const json = await response.json();
-
-      if (response.ok) {
-        
-        resetForm();
-        setError(null); // Reset error state
-        alert('Service added successfully!'); // Placeholder for feedback
-      } else {
-        setError(json.error);
-      }
+      await onSubmit(newService);
+      resetForm();
+      setError(null); // Reset error state
+      alert('Service saved successfully!'); // Placeholder for feedback
     } catch (error) {
       setError('An error occurred while saving the service.');
       console.error('Error:', error);
@@ -86,7 +84,7 @@ const ServiceForm = () => {
 
   return (
     <div className="service-form">
-      <h2>Add Service</h2>
+      <h2>{serviceToEdit ? 'Edit Service' : 'Add Service'}</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="service_name">Service Name:</label>
         <input
@@ -155,20 +153,20 @@ const ServiceForm = () => {
           onChange={(e) => setTime(e.target.value)}
           required
         />
-        <input type="submit" value="Add" />
+        <input type="submit" value={serviceToEdit ? 'Update' : 'Add'} />
+        {serviceToEdit && <button type="button" className="cancel-btn" onClick={onCancelEdit}>Cancel</button>}
         {error && <div className='error'>{error}</div>}
       </form>
     </div>
   );
 };
 
-const ServiceItem = ({ service }) => {
-  
-  const image = require(`../assets/${service.image}`)
+const ServiceItem = ({ service, onEdit, onDelete }) => {
+  const image = require(`../assets/${service.image}`);
   return (
     <div className="service-item">
-      <div className='item-contents'>
-      <img src={image} alt={service.name} className="service-image"/>
+      <div className="item-contents">
+        <img src={image} alt={service.name} className="service-image" />
         <div>
           <h3>{service.name}</h3>
           <p>{service.description}</p>
@@ -178,28 +176,29 @@ const ServiceItem = ({ service }) => {
           <p><span>Time:</span> {service.time} minutes</p>
         </div>
       </div>
-      <div className='item-buttons'>
-
-        <button >Edit</button>
-        <button>Delete</button>
+      <div className="item-buttons">
+        <button onClick={() => onEdit(service)}>Edit</button>
+        <button onClick={() => onDelete(service._id)}>Delete</button>
       </div>
     </div>
   );
 };
 
-const ServiceList = ({ services }) => {
+const ServiceList = ({ services, onEdit, onDelete }) => {
   return (
     <div className="service-list-container">
       <h2>Service List</h2>
       {services.map(service => (
-        <ServiceItem key={service._id} service={service} /> 
+        <ServiceItem key={service._id} service={service} onEdit={onEdit} onDelete={onDelete} />
       ))}
     </div>
   );
 };
 
+
 function AddServiceContent() {
   const [services, setServices] = useState([]);
+  const [serviceToEdit, setServiceToEdit] = useState(null);
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -215,10 +214,75 @@ function AddServiceContent() {
     fetchServices();
   }, []);
 
+  const handleEdit = (service) => {
+    setServiceToEdit(service);
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`/api/service/${id}`, { method: 'DELETE' });
+      if (response.ok) {
+        setServices(services.filter(service => service._id !== id));
+      } else {
+        const errorData = await response.json();
+        console.error('Error deleting service:', errorData.error);
+      }
+    } catch (error) {
+      console.error('Error deleting service:', error);
+    }
+  };
+
+  const handleSubmit = async (service) => {
+    try {
+      if (serviceToEdit) {
+        // Update service
+        const response = await fetch(`/api/service/${serviceToEdit._id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(service)
+        });
+        if (!response.ok) {
+          throw new Error('Failed to update service');
+        }
+        const updatedService = await response.json();
+        setServices(services.map(s => (s._id === serviceToEdit._id ? updatedService : s)));
+      } else {
+        // Add new service
+        const response = await fetch('/api/service', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(service)
+        });
+        if (!response.ok) {
+          throw new Error('Failed to add service');
+        }
+        const newService = await response.json();
+        setServices([...services, newService]);
+      }
+      setServiceToEdit(null);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  const handleCancelEdit = () => {
+    setServiceToEdit(null);
+    // Reset the form fields
+    document.querySelector('.service-form form').reset();
+  };
+
   return (
     <div className="service-page-container">
-      <ServiceForm />
-      <ServiceList services={services} />
+      <ServiceForm
+        onSubmit={handleSubmit}
+        serviceToEdit={serviceToEdit}
+        onCancelEdit={handleCancelEdit}
+      />
+      <ServiceList
+        services={services}
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+      />
     </div>
   );
 }

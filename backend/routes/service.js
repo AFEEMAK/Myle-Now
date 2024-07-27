@@ -1,18 +1,30 @@
 const express = require('express');
-const { getSubCategories, createService,getServices, getServicesById,getServicesByCategoryAndSubcategory,createServiceDetails } = require('../controllers/serviceController');
-const { getCategories,getServiceDetailsByServiceId,searchServices } = require('../controllers/serviceController');
-
+const {
+  getSubCategories,
+  createService,
+  getServices,
+  getServicesById,
+  getServicesByCategoryAndSubcategory,
+  createServiceDetails,
+  getCategories,
+  getServiceDetailsByServiceId,
+  searchServices,
+  deleteService,
+  updateService
+} = require('../controllers/serviceController');
 
 const router = express.Router();
 
-// GET subcategories by category ID
+// Define routes
 router.get('/subcategories/:id', getSubCategories);
 router.get('/categories', getCategories);
-router.get('/',getServices)
-router.get('/category/:id',getServicesById)
+router.get('/', getServices);
+router.get('/category/:id', getServicesById);
 router.get('/details/:id', getServiceDetailsByServiceId);
 router.get('/services/:categoryId/:subcategoryId', getServicesByCategoryAndSubcategory);
 router.post('/details', createServiceDetails);
-router.post('/', createService )
-router.get('/search', searchServices); // *code added*
+router.post('/', createService);
+router.get('/search', searchServices);
+router.delete('/:id', deleteService);
+router.put('/:id', updateService);
 module.exports = router;
