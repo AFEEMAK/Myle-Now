@@ -1,7 +1,9 @@
 import './ColoredSection.css'
 import './ColoredItemList'
 import ColoredItemList from './ColoredItemList';
-import dif1 from '../assets/dif1.png'
+import Professional from '../assets/professional.png';
+import tracking from '../assets/tracking.png';
+import booking from '../assets/booking.png';
 function ServiceColoredSection(){
 
     return(
@@ -14,9 +16,9 @@ function ServiceColoredSection(){
             </div>
             <ColoredItemList 
             children = {[
-                {image:dif1 },
-                {image:dif1 },
-                {image:dif1},
+                {image:Professional },
+                {image:booking },
+                {image:tracking},
             ]}
             
             />
