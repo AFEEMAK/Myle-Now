@@ -7,7 +7,13 @@ import { toast } from "react-toastify";
 
 function ProductCard({ service }) {
   const { _id, name, description, image, price, time } = service;
-  const imagePath = require(`../assets/${image}`);
+  let imagePath;
+  try {
+     imagePath = require(`../assets/${image}`);
+  } catch (error) {
+    console.log(error)
+     imagePath = require(`../assets/image.png`);
+  }
   const { addToCart, isLoading, error } = useCart();
 
   const handleAddToCart = async (id) => {

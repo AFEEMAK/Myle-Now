@@ -187,7 +187,8 @@ nav a {
 
 @media (max-width: 480px) {
   nav {
-      padding: 0px 10px;
+      width: 100%;
+      padding: 0px 0px;
   }
 
   .logo h2 {

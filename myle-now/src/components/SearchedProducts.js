@@ -79,6 +79,7 @@ function SearchedProducts() {
   
     return (
       <div className='service-content'>
+        <p className='search-number'>{services.length} Search Results</p>
         {error && <p>{error}</p>}
         {services.map(service => (
           <ProductCard key={service._id} service={service} />

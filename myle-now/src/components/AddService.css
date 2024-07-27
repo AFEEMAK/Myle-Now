@@ -161,6 +161,16 @@ margin-right: auto;
   background-color: #999999;
 }
 
+.filters{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filters label{
+  padding: 10px;
+}
+
   @media (max-width: 650px){
     .item-contents{
         flex-direction: column;

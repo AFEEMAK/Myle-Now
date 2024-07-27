@@ -14,7 +14,12 @@ import { toast } from "react-toastify";
 function ServiceDetailSection({ serviceDetails }) {
   const { _id } = serviceDetails?.service_id;
   const { addToCart, isLoading, error } = useCart();
-
+  let imagePath
+  try {
+      imagePath = require(`../assets/${serviceDetails.image}`);
+  } catch (error) {
+      imagePath = require('../assets/image.png');
+  }
   const handleAddToCart = async (id) => {
     try {
       await addToCart(id);
@@ -24,7 +29,7 @@ function ServiceDetailSection({ serviceDetails }) {
     }
   };
 
-  const imagePath = require(`../assets/${serviceDetails.image}`);
+ 
   return (
     <div className="details-topsection">
       <div className="details">

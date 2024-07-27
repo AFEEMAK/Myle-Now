@@ -7,7 +7,12 @@ const LINKSTYLE = ['inner-link', 'outer-link'];
 function SuggestionItem({ number, itemstyle, linkstyle, image, text, id }) {
     const checkItemStyle = ITEMSTYLE.includes(itemstyle) ? itemstyle : ITEMSTYLE[0];
     const checkLinkStyle = LINKSTYLE.includes(linkstyle) ? linkstyle : LINKSTYLE[1]
-    const imagePath = require(`../assets/${image}`);
+    let imagePath
+    try {
+        imagePath = require(`../assets/${image}`);
+    } catch (error) {
+        imagePath = require('../assets/image.png');
+    }
     console.log("this is the image pathe",imagePath)
     if(checkLinkStyle === 'outer-link'){
         return(

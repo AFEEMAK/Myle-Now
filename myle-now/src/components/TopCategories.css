@@ -41,12 +41,13 @@
     width: 90%;
     text-align: left;
     margin-bottom: 5px;
-    height: 40px;
+    height: 50px;
     text-transform: uppercase;
 }
 .cardDetails p{
     text-align: left;
     width: 90%;
+    
     font-size: 14px;
     text-decoration: none;
     color: rgb(30, 30, 30);
@@ -54,6 +55,9 @@
     margin-bottom: 10px;
     
     
+}
+.cat-desc{
+    height: 70px;
 }
 
 

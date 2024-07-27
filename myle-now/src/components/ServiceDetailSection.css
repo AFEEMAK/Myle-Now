@@ -1,6 +1,6 @@
 .details-topsection{
     display: flex;
-    width: 70%;
+    width: 65%;
     margin: 50px auto;
     justify-content: space-between;
     align-items: center;
@@ -13,11 +13,11 @@
 .details-topsection .image img{
     width: 100%;
     border-radius: 10px;
-    justify-self: flex-end;
+    
 }
 
 .details-topsection .image{
-    width: 45%;
+    width: 30%;
     margin: 10px auto;
 }
 
@@ -78,24 +78,43 @@
 @media (max-width: 992px) {
     .details-topsection {
         width: 90%;
-        flex-direction: column;
+        
         padding: 10px;
     }
 
     .details-topsection .image,
     .details-topsection .details {
         width: 100%;
-        margin: 10px 0;
+        margin: 10px 10px;
         padding-left: 0;
+    }
+    .details-topsection .image{
+        display: flex;
+        justify-content: center;
     }
 
     .details .desc {
-        width: 90%;
+        width: 80%;
         font-size: 13px;
+        text-align: center;
+        margin: 20px auto;
+        display: flex;
+        justify-content: center;
+        
     }
-
+  
     .details div {
         width: 90%;
+        flex-wrap: wrap;
+        margin: 40px auto;
+
+    }
+
+  
+
+    .details h2{
+        margin: 10px auto;
+        text-align: center;
     }
 }
 
@@ -119,8 +138,9 @@
 
 @media (max-width: 576px) {
     .details-topsection {
-        width: 100%;
+        width: 80%;
         padding: 5px;
+        flex-direction: column-reverse;
     }
 
     .details-topsection .details {
@@ -131,6 +151,10 @@
         font-size: 12px;
     }
 
+    .details div{
+        width: 90%;
+    }
+
     .details div p {
         font-size: 12px;
     }
@@ -138,5 +162,9 @@
     .details div button {
         padding: 6px 25px;
         font-size: 14px;
+    }
+    .details-topsection .image{
+        width: 80%;
+        margin-top: 20px;
     }
 }

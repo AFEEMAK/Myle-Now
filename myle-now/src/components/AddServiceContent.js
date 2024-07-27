@@ -162,7 +162,14 @@ const ServiceForm = ({ onSubmit, serviceToEdit, onCancelEdit }) => {
 };
 
 const ServiceItem = ({ service, onEdit, onDelete }) => {
-  const image = require(`../assets/${service.image}`);
+  let image;
+  try {
+    image = require(`../assets/${service.image}`);
+  } catch (error) {
+    console.error(`Error loading image: ${service.image}`, error);
+    image = require('../assets/image.png'); 
+  }
+
   return (
     <div className="service-item">
       <div className="item-contents">
@@ -187,7 +194,7 @@ const ServiceItem = ({ service, onEdit, onDelete }) => {
 const ServiceList = ({ services, onEdit, onDelete }) => {
   return (
     <div className="service-list-container">
-      <h2>Service List</h2>
+      <h2>Service List ({services.length} Products)</h2>
       {services.map(service => (
         <ServiceItem key={service._id} service={service} onEdit={onEdit} onDelete={onDelete} />
       ))}
@@ -195,24 +202,64 @@ const ServiceList = ({ services, onEdit, onDelete }) => {
   );
 };
 
-
 function AddServiceContent() {
   const [services, setServices] = useState([]);
+  const [filteredServices, setFilteredServices] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [subcategories, setSubcategories] = useState([]);
+  const [categoryFilter, setCategoryFilter] = useState('');
+  const [subcategoryFilter, setSubcategoryFilter] = useState('');
   const [serviceToEdit, setServiceToEdit] = useState(null);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const response = await fetch('/api/service/categories');
+      const data = await response.json();
+      setCategories(data);
+    };
+
+    fetchCategories();
+  }, []);
+
+  useEffect(() => {
+    const fetchSubcategories = async () => {
+      if (categoryFilter) {
+        const response = await fetch(`/api/service/subcategories/${categoryFilter}`);
+        const data = await response.json();
+        setSubcategories(Array.isArray(data) ? data : []);
+      } else {
+        setSubcategories([]);
+      }
+    };
+
+    fetchSubcategories();
+  }, [categoryFilter]);
 
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await fetch('/api/service');
+        let url = '/api/service';
+        if (categoryFilter) {
+          url += `?category=${categoryFilter}`;
+        }
+        if (subcategoryFilter) {
+          url += categoryFilter ? `&subcategory=${subcategoryFilter}` : `?subcategory=${subcategoryFilter}`;
+        }
+        const response = await fetch(url);
         const data = await response.json();
         setServices(data);
+        handleFilterChange(); // Apply filters after fetching
       } catch (error) {
         console.error('Error fetching services:', error);
       }
     };
 
     fetchServices();
-  }, []);
+  }, [categoryFilter, subcategoryFilter]);
+
+  useEffect(() => {
+    handleFilterChange(); // Apply filter whenever services or filters change
+  }, [services, categoryFilter, subcategoryFilter]);
 
   const handleEdit = (service) => {
     setServiceToEdit(service);
@@ -223,6 +270,7 @@ function AddServiceContent() {
       const response = await fetch(`/api/service/${id}`, { method: 'DELETE' });
       if (response.ok) {
         setServices(services.filter(service => service._id !== id));
+        setFilteredServices(filteredServices.filter(service => service._id !== id));
       } else {
         const errorData = await response.json();
         console.error('Error deleting service:', errorData.error);
@@ -235,7 +283,6 @@ function AddServiceContent() {
   const handleSubmit = async (service) => {
     try {
       if (serviceToEdit) {
-        // Update service
         const response = await fetch(`/api/service/${serviceToEdit._id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
@@ -246,8 +293,8 @@ function AddServiceContent() {
         }
         const updatedService = await response.json();
         setServices(services.map(s => (s._id === serviceToEdit._id ? updatedService : s)));
+        setFilteredServices(filteredServices.map(s => (s._id === serviceToEdit._id ? updatedService : s)));
       } else {
-        // Add new service
         const response = await fetch('/api/service', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -258,6 +305,7 @@ function AddServiceContent() {
         }
         const newService = await response.json();
         setServices([...services, newService]);
+        setFilteredServices([...filteredServices, newService]);
       }
       setServiceToEdit(null);
     } catch (error) {
@@ -271,6 +319,28 @@ function AddServiceContent() {
     document.querySelector('.service-form form').reset();
   };
 
+  const handleFilterChange = () => {
+    const filtered = services.filter(service => {
+      return (
+        (!categoryFilter || categoryFilter === '' || service.category === categoryFilter) &&
+        (!subcategoryFilter || subcategoryFilter === '' || service.subcategory === subcategoryFilter)
+      );
+    });
+    setFilteredServices(filtered);
+  };
+
+  const handleCategoryChange = (e) => {
+    setCategoryFilter(e.target.value);
+    // Ensure subcategory filter is reset when category changes
+    setSubcategoryFilter('');
+    handleFilterChange(); // Apply filter
+  };
+
+  const handleSubcategoryChange = (e) => {
+    setSubcategoryFilter(e.target.value);
+    handleFilterChange(); // Apply filter
+  };
+
   return (
     <div className="service-page-container">
       <ServiceForm
@@ -278,8 +348,36 @@ function AddServiceContent() {
         serviceToEdit={serviceToEdit}
         onCancelEdit={handleCancelEdit}
       />
+      <div className="filters">
+        <label htmlFor="filter_category">Category:</label>
+        <select
+          id="filter_category"
+          value={categoryFilter}
+          onChange={handleCategoryChange}
+        >
+          <option value="">All Categories</option>
+          {categories.map((cat) => (
+            <option key={cat._id} value={cat._id}>
+              {cat.category_name}
+            </option>
+          ))}
+        </select>
+        <label htmlFor="filter_subcategory">Subcategory:</label>
+        <select
+          id="filter_subcategory"
+          value={subcategoryFilter}
+          onChange={handleSubcategoryChange}
+        >
+          <option value="">All Subcategories</option>
+          {subcategories.map((subcat) => (
+            <option key={subcat._id} value={subcat._id}>
+              {subcat.subcategory_name}
+            </option>
+          ))}
+        </select>
+      </div>
       <ServiceList
-        services={services}
+        services={filteredServices}
         onEdit={handleEdit}
         onDelete={handleDelete}
       />
