@@ -92,7 +92,7 @@ const AnimatedInput = ({ placeholders = [""], ...passedProps }) => {
     </div>
   );
 };
-const placeholders = [" 'House Cleaning'", " 'Men's Haircut'", " 'Pedicure'"];
+const placeholders = [" 'Cleaning'", " 'Women's Haircut'", " 'Pedicure'"];
 
 function Nav() {
   const { user } = useAuthContext();
