@@ -56,7 +56,7 @@ function App() {
         <Route path="/create-account" element={<CreateAccount />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/admin/add/content" element={<DetailForm />} />
-        <Route path="/searchResults" element={<SearchResults />} />  {/*code added*/}
+        <Route path="/searchResults" element={<SearchResults />} />
 
       </Routes>
     </>

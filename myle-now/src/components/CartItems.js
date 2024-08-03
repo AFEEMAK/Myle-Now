@@ -3,7 +3,6 @@ import massage from "../assets/massage.png";
 import "./CartItems.css";
 import { useCart } from "../hooks/useCart";
 import { useEffect, useState } from "react";
-import { useOrder } from "../hooks/useOrder";
 import { Link } from "react-router-dom";
 
 function CartItems() {
@@ -34,7 +33,7 @@ function CartItems() {
   const handleRemoveFromCart = async (serviceId) => {
     await removeFromCart(serviceId);
     setFetchedCart((prevCart) =>
-      prevCart.filter((item) => item.serviceId._id !== serviceId)
+      prevCart.filter((item) => item.serviceId && item.serviceId._id !== serviceId)
     );
   };
 
@@ -42,21 +41,21 @@ function CartItems() {
     await updateCartItemQuantity(serviceId, quantity);
     setFetchedCart((prevCart) =>
       prevCart.map((item) =>
-        item.serviceId._id === serviceId ? { ...item, quantity } : item
+        item.serviceId && item.serviceId._id === serviceId ? { ...item, quantity } : item
       )
     );
   };
 
   return (
-    <>
-      <div className="cartContainer">
-        <h1 className="cartHeading">Your Cart</h1>
-        <div className="cartItemsList">
-          <section className="try">
-            {isLoading ? (
-              <p>Loading...</p>
-            ) : (
-              fetchedCart.map((item, index) => (
+    <div className="cartContainer">
+      <h1 className="cartHeading">Your Cart</h1>
+      <div className="cartItemsList">
+        <section className="try">
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            fetchedCart.map((item, index) => (
+              item?.serviceId && ( // Add this check
                 <div className="cartItems" key={index}>
                   <div className="imgSec">
                     <img src={massage} alt="" />
@@ -110,53 +109,54 @@ function CartItems() {
                     </div>
                   </div>
                 </div>
-              ))
-            )}
-          </section>
+              )
+            ))
+          )}
+        </section>
 
-          <section className="cartSummary">
-            <h2>SUMMARY</h2>
+        <section className="cartSummary">
+          <h2>SUMMARY</h2>
 
-            {fetchedCart?.map((item, index) => (
+          {fetchedCart?.map((item, index) => (
+            item?.serviceId && ( // Add this check
               <div className="subtotal" key={index}>
-                <p className="p1">{item?.serviceId.name}</p>
-                <p className="p1">{item?.quantity}</p>
-                <p className="p2">{item?.serviceId.price} CAD</p>
+                <p className="p1">{item?.quantity} - {item?.serviceId.name}</p>
+                <p className="p2">{item?.serviceId.price * item?.quantity} CAD</p>
               </div>
-            ))}
-            <div className="subtotal">
-              <p className="p1">Shipping and Handling</p>
-              <p className="p2">5 CAD</p>
-            </div>
-            <div className="subtotal">
-              <p className="p1">Tax (Calculated At Checkout)</p>
-              <p className="p2">---</p>
-            </div>
-            <hr />
-            <div className="subtotal">
-              <p className="bold">Total</p>
-              <p className="bold">
-                {fetchedCart.reduce(
-                  (total, item) =>
-                    total + item?.serviceId.price * item.quantity,
-                  5
-                )}{" "}
-                CAD
-              </p>
-            </div>
-            <Link to={"/checkout"}>
-              <button
-                style={{ width: "100%" }}
-                disabled={isLoading}
-                className="checkoutBtn"
-              >
-                checkout
-              </button>
-            </Link>
-          </section>
-        </div>
+            )
+          ))}
+          <div className="subtotal">
+            <p className="p1">Shipping and Handling</p>
+            <p className="p2">5 CAD</p>
+          </div>
+          <div className="subtotal">
+            <p className="p1">Tax (Calculated At Checkout)</p>
+            <p className="p2">---</p>
+          </div>
+          <hr />
+          <div className="subtotal">
+            <p className="bold">Total</p>
+            <p className="bold">
+              {fetchedCart.reduce(
+                (total, item) =>
+                  item?.serviceId ? total + item?.serviceId.price * item.quantity : total,
+                5
+              )}{" "}
+              CAD
+            </p>
+          </div>
+          <Link to={"/checkout"}>
+            <button
+              style={{ width: "100%" }}
+              disabled={isLoading}
+              className="checkoutBtn"
+            >
+              checkout
+            </button>
+          </Link>
+        </section>
       </div>
-    </>
+    </div>
   );
 }
 
