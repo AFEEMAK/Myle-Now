@@ -12,7 +12,9 @@ function AdminNav(){
                 <li>
                     <Link to='/admin/add/content'>Add Service Content</Link>
                 </li> 
-                    
+                <li>
+                    <Link to='/admin/add/service-provider'>Add Service Provider</Link>
+                </li> 
             </ul>
         </div>
     )

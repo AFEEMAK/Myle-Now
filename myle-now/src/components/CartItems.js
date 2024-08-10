@@ -55,10 +55,11 @@ function CartItems() {
             <p>Loading...</p>
           ) : (
             fetchedCart.map((item, index) => (
-              item?.serviceId && ( // Add this check
+              item?.serviceId && ( 
+              
                 <div className="cartItems" key={index}>
                   <div className="imgSec">
-                    <img src={massage} alt="" />
+                    <img src={require(`../assets/${item?.serviceId.image}`)} alt="" />
                   </div>
 
                   <div className="infoSec">

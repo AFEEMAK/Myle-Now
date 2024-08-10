@@ -10,6 +10,7 @@ import Checkout from "./pages/Checkout";
 import CreateAccount from "./pages/CreateAccount";
 import EmailVerify from "./pages/EmailVerify";
 import AddService from "./pages/AddService";
+import AddServiceProvider from "./pages/AddServiceProvider";
 import Cart from "./pages/Cart";
 import OrderDetailsCS from "./pages/OrderDetailsCS";
 import OrderDetailsSP from "./pages/OrderDetailsSP";
@@ -50,7 +51,7 @@ function App() {
         <Route path="/payment-success" element={<PaymentSuccessPage />} />
         {/* http://localhost:3000/payment-success/cs_test_b1Urvsc8ELt8v2kWNXiExLXHvaYnKIlkPuBt3MxhBjPYX73UznEipp4T97http://localhost:3000/payment-success/cs_test_b1Urvsc8ELt8v2kWNXiExLXHvaYnKIlkPuBt3MxhBjPYX73UznEipp4T97 */}
         <Route path="/orders" element={<OrderPage />} />
-
+        <Route path="/admin/add/service-provider" element={<AddServiceProvider />} />
         <Route path="/ordersCS" element={<OrderDetailsCS />} />
         <Route path="/ordersSP" element={<OrderDetailsSP />} />
         <Route path="/create-account" element={<CreateAccount />} />

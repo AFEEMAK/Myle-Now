@@ -10,6 +10,9 @@ const homeRoutes = require("./routes/home");
 const serviceRoutes = require("./routes/service");
 const orderRoutes = require("./routes/order");
 const cartRoutes = require("./routes/cart");
+const serviceProviderRoutes = require('./routes/serviceProviderRoutes');
+
+
 
 // express app
 const app = express();
@@ -29,6 +32,10 @@ app.use("/api/home/four-categories", homeRoutes);
 app.use("/api/service", serviceRoutes);
 app.use("/api/order", orderRoutes);
 app.use("/api/cart", cartRoutes);
+app.use('/api/serviceproviders', serviceProviderRoutes);
+
+
+
 
 mongoose.set("debug", true);
 

@@ -136,7 +136,9 @@ h3 {
     width: 70%;
     margin: 70px 50px 50px 50px;
 }
-
+.search-number{
+    font-size: 30px;
+}
 .service-content .headerTransition {
     width: 100%;
     margin: 0;
