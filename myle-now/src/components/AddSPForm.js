@@ -9,13 +9,12 @@ function AddSPForm() {
     phone: "",
     email: "",
     password: "",
-    category: "" // Only one category should be stored here
+    category: "" // Single category should be selected
   });
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
 
   useEffect(() => {
-    // Fetch categories from the server
     const fetchCategories = async () => {
       try {
         const response = await axios.get("/api/service/categories");
@@ -33,7 +32,6 @@ function AddSPForm() {
   };
 
   const handleCategoryChange = (e) => {
-    // Set the selected category to the formData
     setFormData({ ...formData, category: e.target.value });
   };
 
@@ -43,7 +41,6 @@ function AddSPForm() {
     try {
         const response = await axios.post('/api/serviceproviders/add', formData);
         console.log("Service provider added:", response.data);
-        // Reset form or handle success
         setSuccessMessage(response.data.message);
         setFormData({
             name: "",
@@ -56,7 +53,7 @@ function AddSPForm() {
         console.error("Error adding service provider:", err.response?.data || err.message);
         setError(err.response?.data.error || "Failed to add service provider");
     }
-};
+  };
 
   return (
     <div className="service-page-container">
@@ -74,7 +71,7 @@ function AddSPForm() {
 
           <label htmlFor="phone">Phone:</label>
           <input
-            type="number"
+            type="text"
             id="phone"
             value={formData.phone}
             onChange={handleChange}

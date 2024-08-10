@@ -1,3 +1,4 @@
+// controllers/serviceProviderController.js
 const User = require('../models/userModel');
 const ServiceProvider = require('../models/serviceProviderModel');
 const bcrypt = require('bcrypt');
@@ -8,15 +9,13 @@ const addServiceProvider = async (req, res) => {
     const { name, phone, email, password, category } = req.body;
 
     // Validation checks
-    let emptyFields = [];
-    if (!name) emptyFields.push('name');
-    if (!phone) emptyFields.push('phone');
-    if (!email) emptyFields.push('email');
-    if (!password) emptyFields.push('password');
-    if (!category) emptyFields.push('category');
+    if (!name || !phone || !email || !password || !category) {
+        return res.status(400).json({ error: 'Please fill in all fields' });
+    }
 
-    if (emptyFields.length > 0) {
-        return res.status(400).json({ error: 'Please fill in all the fields', emptyFields });
+    // Check if email is null or undefined
+    if (!email) {
+        return res.status(400).json({ error: 'Email is required' });
     }
 
     try {

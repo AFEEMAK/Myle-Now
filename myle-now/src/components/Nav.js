@@ -112,6 +112,8 @@ function Nav() {
     logout();
   };
   return (
+  
+      
     <nav>
       <Link to="/">
         <div className="logo">
@@ -131,6 +133,11 @@ function Nav() {
           <Link className="admin-links" to="/admin/add/service">
             Admin
           </Link>
+        )}
+        {role === "service_provider" && (
+               <Link className="admin-links" to="/service_provider">
+               Service Provider
+             </Link>
         )}
       </div>
       <div className="right">
@@ -164,6 +171,8 @@ function Nav() {
         )}
       </div>
     </nav>
+   
+  
   );
 }
 

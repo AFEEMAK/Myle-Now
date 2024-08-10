@@ -19,6 +19,8 @@ import DetailForm from "./pages/DetailForm";
 import OrderPage from "./pages/OrderPage";
 import PaymentSuccessPage from "./components/PaymentSuccessPage";
 import SearchResults from "./pages/SearchResults";
+import ServiceProvider from "./pages/ServiceProvider";
+import OrdersQueue from "./pages/OrdersQueue";
 
 function App() {
   const { user } = useAuthContext();
@@ -58,6 +60,8 @@ function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/admin/add/content" element={<DetailForm />} />
         <Route path="/searchResults" element={<SearchResults />} />
+        <Route path="/service_provider" element={<ServiceProvider/>}/>
+        <Route path="/service_provider/orders_queue" element={<OrdersQueue/>}/>
 
       </Routes>
     </>

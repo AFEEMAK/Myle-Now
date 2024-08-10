@@ -51,7 +51,7 @@ const CheckoutPage = () => {
   const handleRemoveFromCart = async (serviceId) => {
     await removeFromCart(serviceId);
     setFetchedCart((prevCart) =>
-      prevCart.filter((item) => item.serviceId._id !== serviceId)
+      prevCart.filter((item) => item.serviceId && item.serviceId._id !== serviceId)
     );
   };
 
@@ -59,7 +59,7 @@ const CheckoutPage = () => {
     await updateCartItemQuantity(serviceId, quantity);
     setFetchedCart((prevCart) =>
       prevCart.map((item) =>
-        item.serviceId._id === serviceId ? { ...item, quantity } : item
+        item.serviceId && item.serviceId._id === serviceId ? { ...item, quantity } : item
       )
     );
   };
@@ -74,9 +74,7 @@ const CheckoutPage = () => {
 
   const handleCheckout = async (e) => {
     e.preventDefault();
-
     await createOrder(formData);
-
     console.log("Form submitted!", formData);
   };
 
@@ -88,14 +86,15 @@ const CheckoutPage = () => {
     <div className="checkout-page">
       <section className="cartSummary">
         <h2>SUMMARY</h2>
-
-        {fetchedCart?.map((item, index) => (
-          <div className="subtotal" key={index}>
-            <p className="p1">{item?.serviceId.name}</p>
-            <p className="p1">{item?.quantity}</p>
-            <p className="p2">{item?.serviceId.price} CAD</p>
-          </div>
-        ))}
+        {fetchedCart?.map((item, index) =>
+          item.serviceId ? (
+            <div className="subtotal" key={index}>
+              <p className="p1">{item.serviceId.name || 'No Name'}</p>
+              <p className="p1">{item.quantity}</p>
+              <p className="p2">{item.serviceId.price || 'No Price'} CAD</p>
+            </div>
+          ) : null
+        )}
         <div className="subtotal">
           <p className="p1">Shipping and Handling</p>
           <p className="p2">5 CAD</p>
@@ -109,7 +108,8 @@ const CheckoutPage = () => {
           <p className="bold">Total</p>
           <p className="bold">
             {fetchedCart.reduce(
-              (total, item) => total + item?.serviceId.price * item.quantity,
+              (total, item) =>
+                item.serviceId ? total + item.serviceId.price * item.quantity : total,
               5
             )}{" "}
             CAD

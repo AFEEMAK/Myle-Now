@@ -183,9 +183,70 @@ const getAllOrders = async (req, res) => {
   }
 };
 
+const ServiceProvider = require("../models/serviceProviderModel");
+const Service = require("../models/serviceModel");
+const Category = require('../models/categoryModel');
+const User = require('../models/userModel'); 
+
+const getOrdersForQueue = async (req, res) => {
+  try {
+      // Get the service provider's ID from the request (assuming it's sent in the request)
+      const userId = req.user._id;
+
+      // Find the service provider using employeeId
+      const serviceProvider = await ServiceProvider.findOne({ employeeId: userId }).populate('category');
+      if (!serviceProvider) {
+          return res.status(404).json({ error: "Service Provider not found" });
+      }
+
+      // Find services that match the provider's category
+      const services = await Service.find({ category: serviceProvider.category._id });
+
+      // Get the service IDs from the services that match the category
+      const serviceIds = services.map(service => service._id);
+
+      // Fetch orders with empty serviceProvider field and matching serviceId
+      const orders = await Order.find({
+          serviceProvider: '',
+          serviceId: { $in: serviceIds }
+      }).populate('serviceId');
+
+      res.status(200).json(orders);
+  } catch (error) {
+      console.error('Error fetching orders:', error);
+      res.status(400).json({ error: error.message });
+  }
+};
+
+const updateOrder = async (req, res) => {
+  try {
+      const orderId = req.params.id;
+      const serviceProviderId = req.user._id; // Assuming the service provider ID is obtained from the authenticated user
+
+      // Find the order and update it with the service provider ID
+      const updatedOrder = await Order.findByIdAndUpdate(
+          orderId,
+          { serviceProvider: serviceProviderId },
+          { new: true } // Return the updated document
+      );
+
+      if (!updatedOrder) {
+          return res.status(404).json({ error: 'Order not found' });
+      }
+
+      res.status(200).json(updatedOrder);
+  } catch (error) {
+      res.status(400).json({ error: error.message });
+  }
+};
+
+
+
 module.exports = {
   createOrder,
   checkPaymentStatus,
   getAllOrders,
   retryPayment,
+  getOrdersForQueue,
+  updateOrder
 };
