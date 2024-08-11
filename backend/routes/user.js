@@ -14,7 +14,7 @@ const requireAuth = require("../middleware/requireAuth");
 
 router.post("/login", loginUser);
 router.post("/signup", signupUser);
-router.get("/me", requireAuth, getMe);
+// router.get("/me", requireAuth, getMe);
 router.get("/logout", logout);
 
 router.get("/users/:id/verify/:token", async (req, res) => {
@@ -29,14 +29,16 @@ router.get("/users/:id/verify/:token", async (req, res) => {
       userId: user._id,
       token: req.params.token,
     });
+    console.log('TOKEN:',token)
     if (!token) {
       return res.status(400).send({ message: "Invalid link" });
-    }
+    }else{
 
-    user.verified = true;
-    await user.save();
-    await token.remove();
+      user.verified = true;
+      await user.save();
+    }
     res.status(200).send({ message: "Email verified successfully" });
+
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: "Internal Server Error" });

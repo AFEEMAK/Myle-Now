@@ -119,7 +119,7 @@ function CartItems() {
           <h2>SUMMARY</h2>
 
           {fetchedCart?.map((item, index) => (
-            item?.serviceId && ( // Add this check
+            item?.serviceId && ( 
               <div className="subtotal" key={index}>
                 <p className="p1">{item?.quantity} - {item?.serviceId.name}</p>
                 <p className="p2">{item?.serviceId.price * item?.quantity} CAD</p>

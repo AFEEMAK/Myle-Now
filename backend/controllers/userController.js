@@ -61,7 +61,7 @@ const getMe = async (req, res) => {
     return;
   }
 
-  console.log("REq.iser", req.user);
+  console.log("Req.user", req.user);
   try {
     res.status(200).json(req.user);
   } catch (error) {
