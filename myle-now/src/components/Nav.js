@@ -72,6 +72,7 @@ const AnimatedInput = ({ placeholders = [""], ...passedProps }) => {
 
   return (
     <div className="animated-placeholder-container">
+      
       <input
         {...passedProps}
         className="input-with-animated-placeholder"
@@ -79,7 +80,9 @@ const AnimatedInput = ({ placeholders = [""], ...passedProps }) => {
         onFocus={handleFocus}
         onBlur={handleBlur}
         onInput={handleInput}
-        onKeyDown={handleSearch} // *code added*
+        onKeyDown={handleSearch} 
+        aria-label="search box" 
+        id="animate"
       />
       {!isFocused && !isTyping && (
         <div className="placeholder-wrapper">
@@ -115,14 +118,14 @@ function Nav() {
   
       
     <nav>
-      <Link to="/">
+      <Link aria-label="Open home page" to="/">
         <div className="logo">
           <h2>MYLE NOW</h2>
         </div>
       </Link>
 
       <div className="search-boxes">
-        <input type="text" className="location"></input>
+        
 
         <AnimatedInput placeholders={placeholders} />
         
@@ -130,21 +133,22 @@ function Nav() {
       
       <div>
         {role === "admin" && (
-          <Link className="admin-links" to="/admin/add/service">
+          <Link aria-label="Open admin menu" className="admin-links" to="/admin/add/service">
             Admin
           </Link>
         )}
         {role === "service_provider" && (
-               <Link className="admin-links" to="/service_provider">
+               <Link aria-label="Open service provider menu" className="admin-links" to="/service_provider">
                Service Provider
              </Link>
         )}
       </div>
       <div className="right">
-        <Link className="cartIcon" to="/cart">
+        <Link aria-label="Open cart page" className="cartIcon" to="/cart">
             <img src={cart} alt=""/>
         </Link>
       {!user?._id && <LinkButton buttontext="Login"></LinkButton>}
+      {user?._id && <LinkButton buttontext="Orders" btnlink="orders">Orders</LinkButton>}&nbsp;&nbsp;
       {user?._id && <LinkButton buttontext="Logout" btnfuntion={handleClick} />}
       </div>
       <img
@@ -161,11 +165,11 @@ function Nav() {
         </div>
         <LinkButton btnlink={'/cart'} buttontext="Cart" ></LinkButton>
 
-        {!user && <LinkButton buttontext="Login"></LinkButton>}
-        {user && <LinkButton buttontext="Logout" btnfuntion={handleClick} />}
+        {!user && <LinkButton aria-label="Open navigation menu" buttontext="Login"></LinkButton>}
+        {user && <LinkButton aria-label="Open navigation menu" buttontext="Logout" btnfuntion={handleClick} />}
 
         {role === "admin" && (
-          <Link className="admin-links" to="/admin/add/service">
+          <Link aria-label="Open admin menu" className="admin-links" to="/admin/add/service">
             Admin
           </Link>
         )}

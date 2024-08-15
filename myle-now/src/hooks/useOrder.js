@@ -22,6 +22,7 @@ export const useOrder = () => {
       state,
       zip,
       country,
+      deliveryDateTime
     } = formData;
     console.log("Fr", email);
     if (
@@ -34,7 +35,8 @@ export const useOrder = () => {
       !city ||
       !state ||
       !zip ||
-      !country
+      !country ||
+      !deliveryDateTime
     ) {
       setError("Incomplete Data");
       setIsLoading(false);
@@ -57,6 +59,7 @@ export const useOrder = () => {
           state,
           zip,
           country,
+          deliveryDateTime,
         }),
       });
       const json = await response.json();

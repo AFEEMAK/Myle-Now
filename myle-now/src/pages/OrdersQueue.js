@@ -75,7 +75,7 @@ const OrderList = () => {
                             </div>
                             <div className="div4">
                                 <p className="orderTotal">Order Total: {order.totalAmount} CAD</p>
-                                <p className="time">{new Date(order.createdAt).toLocaleString()}</p>
+                                <p className="time">{new Date(order.deliveryDateTime).toLocaleString()}</p>
                             </div>
                         </div>
                     </div>

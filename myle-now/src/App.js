@@ -52,9 +52,9 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/payment-success" element={<PaymentSuccessPage />} />
         {/* http://localhost:3000/payment-success/cs_test_b1Urvsc8ELt8v2kWNXiExLXHvaYnKIlkPuBt3MxhBjPYX73UznEipp4T97http://localhost:3000/payment-success/cs_test_b1Urvsc8ELt8v2kWNXiExLXHvaYnKIlkPuBt3MxhBjPYX73UznEipp4T97 */}
-        <Route path="/orders" element={<OrderPage />} />
+        {/* <Route path="/orders" element={<OrderPage />} /> */}
         <Route path="/admin/add/service-provider" element={<AddServiceProvider />} />
-        <Route path="/ordersCS" element={<OrderDetailsCS />} />
+        <Route path="/orders" element={<OrderDetailsCS />} />
         <Route path="/ordersSP" element={<OrderDetailsSP />} />
         <Route path="/create-account" element={<CreateAccount />} />
         <Route path="/about" element={<AboutUs />} />

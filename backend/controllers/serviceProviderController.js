@@ -52,4 +52,20 @@ const addServiceProvider = async (req, res) => {
     }
 };
 
-module.exports = { addServiceProvider };
+
+const getServiceProviderById = async (req, res) => {
+    try {
+        
+        const serviceProvider = await ServiceProvider.findById(JSON.stringify(req.params.id));
+        if (!serviceProvider) {
+            return res.status(404).json({ error: 'Service provider not found' });
+        }
+        res.status(200).json({ name: serviceProvider.name });
+    } catch (error) {
+        console.error('Error fetching service provider:', error);
+        res.status(500).json({ error: 'Failed to fetch service provider' });
+    }
+};
+
+
+module.exports = { addServiceProvider, getServiceProviderById };

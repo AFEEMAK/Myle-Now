@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-
 const Schema = mongoose.Schema;
 
 const orderSchema = new Schema({
@@ -24,7 +23,6 @@ const orderSchema = new Schema({
     ref: "Service",
     required: true,
   },
-
   quantity: {
     type: Number,
     required: true,
@@ -49,6 +47,10 @@ const orderSchema = new Schema({
   serviceProvider: {
     type: String,
     default: ""
+  },
+  deliveryDateTime: {
+    type: Date,
+    required: true
   }
 });
 

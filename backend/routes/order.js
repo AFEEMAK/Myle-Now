@@ -5,7 +5,8 @@ const {
   getAllOrders,
   retryPayment,
   getOrdersForQueue,
-  updateOrder
+  updateOrder,
+  getOrdersWithServiceProvider
 } = require("../controllers/orderController");
 
 const bodyParser = require("body-parser");
@@ -21,9 +22,9 @@ router.put("/", retryPayment);
 router.get("/check-payment-status", checkPaymentStatus);
 router.get("/orders-queue", getOrdersForQueue);
 router.put('/order/:id', updateOrder); 
+router.get("/orders-with-service-provider", getOrdersWithServiceProvider);
 
 
 module.exports = router;
 
 
-module.exports = router;

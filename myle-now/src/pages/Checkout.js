@@ -7,13 +7,6 @@ import Loader from "../components/Global/Loader";
 
 const CheckoutPage = () => {
   const [fetchedCart, setFetchedCart] = useState([]);
-  const {
-    isLoading,
-    fetchCart,
-    removeFromCart,
-    updateCartItemQuantity,
-    error,
-  } = useCart();
   const [formData, setFormData] = useState({
     email: "",
     firstName: "",
@@ -25,8 +18,16 @@ const CheckoutPage = () => {
     state: "",
     zip: "",
     country: "Canada",
+    deliveryDateTime: ""  // Added field for date-time
   });
 
+  const {
+    isLoading,
+    fetchCart,
+    removeFromCart,
+    updateCartItemQuantity,
+    error,
+  } = useCart();
   const {
     createOrder,
     isLoading: orderLoading,
@@ -74,8 +75,22 @@ const CheckoutPage = () => {
 
   const handleCheckout = async (e) => {
     e.preventDefault();
-    await createOrder(formData);
-    console.log("Form submitted!", formData);
+
+    // Validate that the delivery date is in the future
+    const selectedDate = new Date(formData.deliveryDateTime);
+    if (selectedDate <= new Date()) {
+      alert("Please select a future date.");
+      return;
+    }
+
+    try {
+      await createOrder(formData);
+      alert("Order placed successfully!");
+      // Redirect to a success page or clear the cart
+    } catch (error) {
+      console.error("Error placing order:", error);
+      alert("There was an error placing your order. Please try again.");
+    }
   };
 
   if (isLoading || orderLoading) {
@@ -92,6 +107,7 @@ const CheckoutPage = () => {
               <p className="p1">{item.serviceId.name || 'No Name'}</p>
               <p className="p1">{item.quantity}</p>
               <p className="p2">{item.serviceId.price || 'No Price'} CAD</p>
+          
             </div>
           ) : null
         )}
@@ -120,118 +136,128 @@ const CheckoutPage = () => {
         <h2>Customer Information</h2>
         <form onSubmit={handleCheckout}>
           <div className="form-group">
+            <label htmlFor="email">Email:</label>
             <input
               type="email"
               id="email"
               name="email"
-              placeholder="Email"
               value={formData.email}
               onChange={handleInputChange}
               required
             />
           </div>
           <div className="form-group">
+            <label htmlFor="firstName">First Name:</label>
             <input
               type="text"
               id="firstName"
               name="firstName"
-              placeholder="First Name"
               value={formData.firstName}
               onChange={handleInputChange}
               required
             />
           </div>
           <div className="form-group">
+            <label htmlFor="lastName">Last Name:</label>
             <input
               type="text"
               id="lastName"
               name="lastName"
-              placeholder="Last Name"
               value={formData.lastName}
               onChange={handleInputChange}
               required
             />
           </div>
           <div className="form-group">
+            <label htmlFor="phone">Phone:</label>
             <input
               type="tel"
               id="phone"
               name="phone"
-              placeholder="Phone"
               value={formData.phone}
               onChange={handleInputChange}
               required
             />
           </div>
           <div className="form-group">
+            <label htmlFor="address">Address:</label>
             <input
               type="text"
               id="address"
               name="address"
-              placeholder="Address"
               value={formData.address}
               onChange={handleInputChange}
               required
             />
           </div>
           <div className="form-group">
+            <label htmlFor="apt">Apt/Suite:</label>
             <input
               type="text"
               id="apt"
               name="apt"
-              placeholder="Apt / Suite"
               value={formData.apt}
               onChange={handleInputChange}
             />
           </div>
           <div className="form-group">
+            <label htmlFor="city">City:</label>
             <input
               type="text"
               id="city"
               name="city"
-              placeholder="City"
               value={formData.city}
               onChange={handleInputChange}
               required
             />
           </div>
           <div className="form-group">
+            <label htmlFor="state">State:</label>
             <input
               type="text"
               id="state"
               name="state"
-              placeholder="State"
               value={formData.state}
               onChange={handleInputChange}
               required
             />
           </div>
           <div className="form-group">
+            <label htmlFor="zip">Zip Code:</label>
             <input
               type="text"
               id="zip"
               name="zip"
-              placeholder="ZIP Code"
               value={formData.zip}
               onChange={handleInputChange}
               required
             />
           </div>
           <div className="form-group">
-            <select
+            <label htmlFor="country">Country:</label>
+            <input
+              type="text"
               id="country"
               name="country"
               value={formData.country}
               onChange={handleInputChange}
+              readOnly
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="deliveryDateTime">Preferred Delivery Date & Time:</label>
+            <input
+              type="datetime-local"
+              id="deliveryDateTime"
+              name="deliveryDateTime"
+              value={formData.deliveryDateTime}
+              onChange={handleInputChange}
               required
-            >
-              <option value="Canada">Canada</option>
-              <option value="USA">USA</option>
-            </select>
+            />
           </div>
           <p>By clicking "Checkout," I agree to the terms and conditions.</p>
 
-          {error || (orderError && <p className="">{error || orderError}</p>)}
+          {error || (orderError && <p className="error">{error || orderError}</p>)}
 
           <button
             className="btnn"
@@ -239,9 +265,9 @@ const CheckoutPage = () => {
             type="submit"
           >
             {orderLoading ? (
-              <span>proceeding to payment page...</span>
+              <span>Proceeding to payment page...</span>
             ) : (
-              <span>checkout</span>
+              <span>Checkout</span>
             )}
           </button>
         </form>

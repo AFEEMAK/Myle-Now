@@ -8,7 +8,7 @@ import "./Footer.css";
 function Footer() {
   return (
     <footer>
-      <Link to="/">
+      <Link  aria-label="home" to="/">
         <div className="footerLogo">
           <h2>MYLE NOW</h2>
         </div>
@@ -16,47 +16,47 @@ function Footer() {
       <div className="links">
         <section>
           <h3>COMPANY</h3>
-          <Link to="/about">
+          <Link  aria-label="home"  to="/about">
             <p>About</p>
           </Link>
-          <Link to="/">
+          <Link  aria-label="home"  to="/">
             <p>Contact</p>
           </Link>
         </section>
 
         <section>
           <h3>FOR CUSTOMERS</h3>
-          <Link to="/cart">
+          <Link  aria-label="open cart page"  to="/cart">
             <p>Cart</p>
           </Link>
-          <Link to="/orders">
+          <Link  aria-label="open orders page"  to="/orders">
             <p>Orders</p>
           </Link>
-          <Link to="/">
+          <Link  aria-label="open home"  to="/">
             <p>Discover Categories</p>
           </Link>
         </section>
 
         <section>
           <h3>FOR PARTNERS</h3>
-          <Link to="/">
+          <Link  aria-label="open home"  to="/">
             <p>Register as Professional</p>
           </Link>
         </section>
       </div>
 
       <div className="socialMedia">
-        <Link to="/">
-          <img src={facebookIcon} alt=""></img>
+        <Link  aria-label="open facebook"  to="/">
+          <img src={facebookIcon} alt="fb"></img>
         </Link>
-        <Link to="/">
-          <img src={instagramIcon} alt=""></img>
+        <Link  aria-label="open facebook"  to="/">
+          <img src={instagramIcon} alt="insta"></img>
         </Link>
-        <Link to="/">
-          <img src={xIcon} alt=""></img>
+        <Link  aria-label="open home" to="/">
+          <img src={xIcon} alt="x"></img>
         </Link>
-        <Link to="/">
-          <img src={linkedInIcon} alt=""></img>
+        <Link  aria-label="open home"  to="/">
+          <img src={linkedInIcon} alt="linkedin"></img>
         </Link>
       </div>
 

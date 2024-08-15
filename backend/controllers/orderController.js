@@ -14,6 +14,7 @@ const createOrder = async (req, res) => {
     phone,
     state,
     zip,
+    deliveryDateTime
   } = req.body;
 
   if (
@@ -26,7 +27,8 @@ const createOrder = async (req, res) => {
     !city ||
     !state ||
     !zip ||
-    !country
+    !country ||
+    !deliveryDateTime
   ) {
     throw new Error("Incomplete Data!");
   }
@@ -74,6 +76,7 @@ const createOrder = async (req, res) => {
         phone,
         state,
         zip,
+        deliveryDateTime
       });
       await order.save();
     }
@@ -190,22 +193,21 @@ const User = require('../models/userModel');
 
 const getOrdersForQueue = async (req, res) => {
   try {
-      // Get the service provider's ID from the request (assuming it's sent in the request)
+   
       const userId = req.user._id;
 
-      // Find the service provider using employeeId
+      
       const serviceProvider = await ServiceProvider.findOne({ employeeId: userId }).populate('category');
       if (!serviceProvider) {
           return res.status(404).json({ error: "Service Provider not found" });
       }
 
-      // Find services that match the provider's category
       const services = await Service.find({ category: serviceProvider.category._id });
 
-      // Get the service IDs from the services that match the category
+   
       const serviceIds = services.map(service => service._id);
 
-      // Fetch orders with empty serviceProvider field and matching serviceId
+      
       const orders = await Order.find({
           serviceProvider: '',
           serviceId: { $in: serviceIds }
@@ -221,13 +223,12 @@ const getOrdersForQueue = async (req, res) => {
 const updateOrder = async (req, res) => {
   try {
       const orderId = req.params.id;
-      const serviceProviderId = req.user._id; // Assuming the service provider ID is obtained from the authenticated user
+      const serviceProviderId = req.user._id; 
 
-      // Find the order and update it with the service provider ID
       const updatedOrder = await Order.findByIdAndUpdate(
           orderId,
           { serviceProvider: serviceProviderId },
-          { new: true } // Return the updated document
+          { new: true } 
       );
 
       if (!updatedOrder) {
@@ -240,6 +241,25 @@ const updateOrder = async (req, res) => {
   }
 };
 
+const getOrdersWithServiceProvider = async (req, res) => {
+  try {
+   
+    const serviceProviderId = req.user._id.toString();
+
+    
+    const orders = await Order.find({
+      serviceProvider: { $exists: true, $ne: "", $eq: serviceProviderId }
+    }).populate('serviceId');
+
+    
+    res.status(200).json(orders);
+  } catch (error) {
+    console.error('Error fetching orders with service provider:', error);
+    res.status(400).json({ error: error.message });
+  }
+};
+
+
 
 
 module.exports = {
@@ -248,5 +268,6 @@ module.exports = {
   getAllOrders,
   retryPayment,
   getOrdersForQueue,
-  updateOrder
+  updateOrder,
+  getOrdersWithServiceProvider
 };
