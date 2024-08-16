@@ -7,7 +7,7 @@ function ColoredItemList({children}){
                     <ColoredItem
                     image = {child.image}
                     name = {child.name}
-                    
+                    id = {child.id}
                     />
 
     ))}

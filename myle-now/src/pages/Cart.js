@@ -6,7 +6,7 @@ function Cart() {
     return(
         <>
         <CartItems/>
-        <SimilarServices/>
+        {/* <SimilarServices/> */}
         </>
     );
 }

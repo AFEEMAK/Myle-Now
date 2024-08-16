@@ -85,8 +85,7 @@ const CheckoutPage = () => {
 
     try {
       await createOrder(formData);
-      alert("Order placed successfully!");
-      // Redirect to a success page or clear the cart
+      
     } catch (error) {
       console.error("Error placing order:", error);
       alert("There was an error placing your order. Please try again.");

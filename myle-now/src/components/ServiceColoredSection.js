@@ -16,9 +16,9 @@ function ServiceColoredSection(){
             </div>
             <ColoredItemList 
             children = {[
-                {image:Professional },
-                {image:booking },
-                {image:tracking},
+                {image:'tracking.png'},
+                {image:'professional.png' },
+                {image:'booking.png'},
             ]}
             
             />

@@ -59,7 +59,7 @@ function CartItems() {
               
                 <div className="cartItems" key={index}>
                   <div className="imgSec">
-                    <img src={require(`../assets/${item?.serviceId.image}`)} alt="" />
+                    <img src={require(`../assets/${item?.serviceId.image}`)} alt={item?.serviceId.name} />
                   </div>
 
                   <div className="infoSec">
@@ -72,7 +72,7 @@ function CartItems() {
                         onClick={() => handleRemoveFromCart(item.serviceId._id)}
                         className="info1Img"
                       >
-                        <img src={trash} alt="" />
+                        <img src={trash} alt=" delete button" />
                       </div>
                     </div>
 

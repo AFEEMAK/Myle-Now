@@ -39,6 +39,13 @@ hr {
     border-radius: 10px;
 }
 
+
+.item a{
+    text-decoration: none;
+    text-align: center;
+    color: black;
+}
+
 /* Responsive Styles */
 @media (max-width: 1200px) {
     .coloredItems {

@@ -56,7 +56,8 @@ const addServiceProvider = async (req, res) => {
 const getServiceProviderById = async (req, res) => {
     try {
         
-        const serviceProvider = await ServiceProvider.findById(JSON.stringify(req.params.id));
+        const serviceProvider = await ServiceProvider.findOne({employeeId : req.params.id});
+        console.log(serviceProvider)
         if (!serviceProvider) {
             return res.status(404).json({ error: 'Service provider not found' });
         }
