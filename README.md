@@ -24,7 +24,7 @@ Website Features:
 
 2)Register/Login with Email verification.
 ![image](https://github.com/user-attachments/assets/d0cc827c-b333-4738-814d-75b8619b6cc0)
-
+![account created image](<account created.png>)
 
 3)	Search for the service you are looking for.
 ![image](https://github.com/user-attachments/assets/c0946f6b-a96d-45e0-ad4a-616f9fb922c5)
@@ -54,6 +54,8 @@ Website Features:
 ![image](https://github.com/user-attachments/assets/68b27979-68bb-47fd-a2fd-5b67a6b9ce73)
 
 
+
+
 Now, lets look at some admin features.
 1)Admin can add, edit, delete services.
 ![image](https://github.com/user-attachments/assets/e9935d2b-1270-4104-9d71-b5c96b792454)
@@ -61,6 +63,7 @@ Now, lets look at some admin features.
 
 2)Admin can add new service providers and create a password for service providers that will be associated to their account. Once service provider is added, a confirmation email will be sent to them with their passwords which will be used for login.
 ![image](https://github.com/user-attachments/assets/d4461eaa-d2cf-459b-bdcc-e6113cef4af4)
+![Service provider account confirmation](service.jpg)
 
 
 
