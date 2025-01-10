@@ -24,7 +24,7 @@ Website Features:
 
 2)Register/Login with Email verification.
 ![image](https://github.com/user-attachments/assets/d0cc827c-b333-4738-814d-75b8619b6cc0)
-![account created image](<account created.png>)
+![Verfication link image](verification(register).png)
 
 3)	Search for the service you are looking for.
 ![image](https://github.com/user-attachments/assets/c0946f6b-a96d-45e0-ad4a-616f9fb922c5)
